@@ -1,0 +1,69 @@
+/* 
+    Created on : 27 ene 2023, 9:16:15
+    Author     : José A. Rodríguez López
+*/
+@font-face{
+    font-family: 'TTNorms-Black'; /*Nombre de la fuente. Requerido.*/
+    src: url('../fonts/TTNorms-Black.otf'); /*URL donde se encuentra la fuente. Se pueden incluir 
+                                           varios formatos separados por comas para diferentes 
+                                           navegadores (EOT, TTF, OTF, WOFF, WOFF2, SVG). Requerido.*/
+    font-style: normal; /*Estilo de la fuente.*/
+    font-weight: bold; /*Grosor de la fuente.*/
+    font-strech: normal; /*Estrechamiento.*/
+    /*unicode-range: ; Define el rando de caracteres unicode que la fuente soporta.*/
+}
+
+body{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-color: #330099;
+}
+
+h1{
+    font-family: 'TTNorms-Black';
+    font-size: 100px;
+    text-align: center;
+    margin: 20px auto 40px auto;
+}
+
+#contenedorLogin{
+    position:relative;
+    margin-left:auto;
+    margin-right: auto;
+    position:relative;
+    width: 800px;
+    min-height: auto;
+    background-size: 100%;
+}
+
+#contenedorLogin img{
+    display: inline-block;
+    width:100%;
+    height:100%;
+}
+
+#contenedorLogin #registro{
+    position:absolute;
+    display: inline-block;
+    top:10%;
+    left:0;
+    width:100%;
+    height:100%;
+    text-align: center;
+    font-family: sans-serif;
+    font-size:30px;
+    text-align: left
+    
+}
+
+#contenedorLogin #registro #login input {
+    font-size:30px;
+    margin: 20px;
+}
+
+#contenedorLogin #registro #login input:button{
+    text-align: center;
+}
