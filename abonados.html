@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Gestión Abonados</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/estilosAbonados.css">
+    <link rel="icon" href="data:,"> <!--Elimina error favicon.ico-->
+    <!--Google Maps-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClxE0ayXHJP7BhRDk-xWf1M77YUVk5pBY&libraries=geometry"
+        defer></script>
+    <!-- SweetAlert -->
+    <!--Plugin con el cual podremos dar un aspecto profesional a los mensajes que lancemos a los usuarios acorde a las tendencias actuales -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <!--Script operaciones Google Maps-->
+    <script src="./js/googleMaps.js" defer></script>
+    <!--Script operaciones contra la base de datos-->
+    <script src="./js/baseDeDatos.js" defer></script>
+    <!--Script funciones-->
+    <script src="./js/funciones.js" defer></script>
+    <!--Script objetos y eventos sobre el documento-->
+    <script src="./js/abonados.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <img src="./images/AquaGest.png" alt="Logo AquaGest">
+        <h1>Gestión Abonados</h1>
+    </header>
+
+    <main>
+        <div id="menu">
+            <ul>
+                <li>
+                    <input type="button" id="bGrabar" value="Nuevo registro">
+                </li>
+                <li>
+                    <input type="button" id="bModificar" value="Modificar registro">
+                </li>
+                <li>
+                    <input type="button" id="bBorrar" value="Borrar registro">
+                </li>
+                <li>
+                    <input type="button" id="bPrimero" value="Visualizar primero">
+                </li>
+                <li>
+                    <input type="button" id="bUltimo" value="Visualizar último">
+                </li>
+                <li>
+                    <input type="button" id="bSiguiente" value="Siguiente">
+                </li>
+                <li>
+                    <input type="button" id="bAnterior" value="Anterior">
+                </li>
+                <li>
+                    <a
+                        href="http://www.informaticasc.com/curso22_23/Rodriguez/Dispositivos_IOT/pdf/ListadoAbonados.php">
+                        <input type="button" id="bPdf" value="Listado Abonados">
+                    </a>
+                </li>
+                <li>
+                    <a href="./index.html">
+                        <input type="button" class="btn" id="facturacion" value="Volver">
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="principal">
+            <div id="datosAbonado">
+                <h3>Datos abonado</h3>
+                <fieldset>
+                    <div class="container">
+                        <form name="form" id="form">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="iNIF">NIF/NIE</label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="text" class="campo" id="iNIF" name="iNIF" style="width:95px" value="" placeholder="NIF/NIE">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="iNombre">Nombre</label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="text" class="campo" id="iNombre" name="iNombre" style="width:250px" value="" placeholder="Nombre.">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="iApellido1">Primer apellido</label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="text" class="campo" id="iApellido1" name="iApellido1" style="width:250px" value="" placeholder="Primer apellido.">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="iApellido2">Segundo apellido</label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="text" class="campo" id="iApellido2" name="iApellido2" style="width:250px" style="width:300px" value="" placeholder="Segundo apellido.">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="iDireccion">Dirección</label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="text" class="campo" id="iDireccion" name="iDireccion" style="width:600px" 
+                                    placeholder="Ingresar o marcar localización en el mapa." value="">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="iMail">E-mail</label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="text" class="campo" id="iMail" name="iMail" style="width:250px" placeholder="E-mail" value="">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="iTelefono">Teléfono</label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="text" class="campo" id="iTelefono" name="iTelefono" style="width:80px" placeholder="Teléfono." pattern="(+34|0034|34)?[ -]?(6|7|8|9)([0-9]){8}" value="">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="iIban">IBAN</label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="text" class="campo" id="iIban" name="iIban" style="width:300px" placeholder="IBAN." value="">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div id="cajamapa">
+                <h3>Mapa</h3>
+                <div class="map_canvas" id="map_canvas">
+                </div>
+                <div id="direccionMapa"></div>
+            </div>
+        </div>
+    </main>
+
+    <!--Pie de página-->
+    <footer id="pie">
+        <div>
+            <img src="./images/JARL_Logo.jpg" alt="JARL_Logo">
+            <div>
+                <p>Desarrollo de aplicaciones Web(DAW) &copy; CIFP Santa Catalina</p>
+                <p>Realizado por: José A. Rodríguez López.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

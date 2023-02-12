@@ -1,5 +1,5 @@
 /* 
-    Created on : 27 ene 2023, 9:16:15
+    Created on : 12 feb 2023, 9:16:15
     Author     : José A. Rodríguez López
 */
 @font-face {
@@ -23,7 +23,7 @@ body {
     height: 100%;
     margin: 0;
     background-color: #0f9bf6;
-    min-height: 760px;
+    min-height: 780px;
 }
 
 header{
@@ -38,6 +38,7 @@ h1 {
     font-size: 100px;
     text-align: center;
     margin: 20px auto 40px auto;
+    text-shadow: red 0 -2px;;
 }
 
 header img{
@@ -87,6 +88,7 @@ header img{
     width: 100%;
     position:absolute;
     left: 0;
+    height: 455px;
 }
 
 #icon_gota{
@@ -95,7 +97,7 @@ header img{
 
 #contenedor_olas {
     margin: 0;
-    height: 325px;
+    height: 425px;
     background: #0f9bf6;
     display: flex;
     position: relative;
@@ -109,7 +111,7 @@ header img{
 #olas {
     position: absolute;
     top: 0;
-    height: 425px;
+    height: 500px;
     width: 100%;
     overflow: hidden;
 }
