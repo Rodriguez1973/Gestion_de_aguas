@@ -23,7 +23,7 @@ body {
     height: 100%;
     margin: 0;
     background-color: #0f9bf6;
-    min-height: 650px;
+    min-height: 760px;
 }
 
 header{
@@ -47,15 +47,17 @@ header img{
 }
 
 #menu{
-    z-index: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 30px 0 0 0;
     width:100%;
+    min-width: 560px;
+    background-color: transparent;
 }
 
 #menuNavegacion{
+    z-index: 1;
     list-style: none;
     text-align: center;
     padding: 0;
@@ -65,11 +67,30 @@ header img{
     margin: 0 200px 0 200px;
 }
 
-#menuNavegacion input[type="button"]{
+.btn {
+    border: none;
     width: 500px;
     font-weight: bold;
     font-size: 40px;
     margin: 30px 0 30px 0;
+    transition: all 1s;
+    border-radius: 20px;
+}
+
+.btn:hover{
+    background-color: aquamarine;
+    box-shadow: 0 7px darkblue;
+    top:2px;
+}
+
+#cont_olas{
+    width: 100%;
+    position:absolute;
+    left: 0;
+}
+
+#icon_gota{
+    text-align: center;
 }
 
 #contenedor_olas {
@@ -82,6 +103,7 @@ header img{
     justify-content: center;
     z-index:0;
     overflow: hidden;
+    width:100%;
 }
 
 #olas {
@@ -138,7 +160,8 @@ footer {
     bottom: 15px;
     font-weight: bold;
     width: 100%;
-    z-index: 1;;
+    z-index: 1;
+    min-width: 560px;
 }
 
 footer img {
@@ -160,4 +183,3 @@ footer>div {
     display: flex;
     justify-content: center;
 }
-
