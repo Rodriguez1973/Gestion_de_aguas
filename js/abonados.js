@@ -33,7 +33,7 @@ bGrabar.addEventListener('click', nuevoRegistro, false) //Evento click sobre el 
 bModificar.addEventListener(
   'click',
   function () {
-    if (validarDatos()) {
+    if (validarAbonado()) {
       grabarRegistro(false)
     }
   },
@@ -54,7 +54,7 @@ function nuevoRegistro() {
     cambiarGrabar()
   } else {
     //Grabando.
-    if (validarDatos()) {
+    if (validarAbonado()) {
       grabarRegistro(true)
       cambiarNuevo()
       grabar = false

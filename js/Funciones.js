@@ -30,85 +30,128 @@ function obtenerHoraActual() {
 
 //--------------------------------------------------------------------------------------------------
 //Valida los datos del dispositivo IOT.
-function validarDatos(evt) {
+function validarAbonado(evt) {
   let mensaje = ''
   let validado = true
-  //Valida el tipo.
-  if (sTipo.value == 'Seleccionar') {
-    mensaje = 'No existe un tipo seleccionado.'
-    validado = false
-  }
-  //Valida la cantidad.
-  if (validado) {
-    if (iCantidad.value == '') {
-      mensaje = 'No ha introducido ninguna cantidad.'
+  //Valida el NIF.
+  if (evt.target.id === 'iNIF' || evt.target.id === 'bGrabar') {
+    let patron = /(?=^.{1,50}$)[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]+/
+    let resultado = patron.test(iNIF.value.trim().toUpperCase())
+    if (!resultado) {
+      document.getElementById('iNIF').style.color = 'red'
+      document.getElementById('iNIF').style.borderColor = 'red'
       validado = false
-    } else if (iCantidad.value <= 0) {
-      mensaje = 'La cantidad no puede ser negativa o cero.'
-      validado = false
+    } else {
+      document.getElementById('iNIF').style.color = 'black'
+      document.getElementById('iNIF').style.borderColor = 'black'
     }
   }
-  //Valida la hora.
-  if (validado) {
-    if (iHora.value == '') {
-      mensaje = 'No se ha introducido una hora.'
+
+  //Valida el Nombre.
+  if (evt.target.id === 'iNombre' || evt.target.id === 'bGrabar') {
+    let patron = /^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]+(\s([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]+))?$"/
+    let resultado = patron.test(iNombre.value.trim())
+    if (!resultado) {
+      mensaje = 'Nombre no válido. Caracteres admitidos: "a-zA-ZñÑáéíóúÁÉÍÓÚüÜ". Nombres compuestos por un máximo de 2 subcadenas separadas por un espacio.'
+      document.getElementById('iNombre').style.color = 'red'
+      document.getElementById('iNombre').style.borderColor = 'red'
       validado = false
+    } else {
+      document.getElementById('iNombre').style.color = 'black'
+      document.getElementById('iNombre').style.borderColor = 'black'
     }
   }
-  //Valida la hora si es anterior o igual a la actual.
-  if (validado) {
-    let fecha = iFecha.value.replaceAll('-', '')
-    if (
-      fecha == obtenerFechaActual().replaceAll('-', '') &&
-      iHora.value.replaceAll(':', '') > obtenerHoraActual().replaceAll(':', '')
-    ) {
-      mensaje = 'La hora no puede ser superior a la hora actual para la fecha actual.'
+
+  //Valida el Apellido1.
+  if (evt.target.id === 'iApellido1' || evt.target.id === 'bGrabar') {
+    let patron = /^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]+$"/
+    let resultado = patron.test(iApellido1.value.trim())
+    if (!resultado) {
+      mensaje = 'Primer apellido no válido. Caracteres admitidos: "a-zA-ZñÑáéíóúÁÉÍÓÚüÜ".'
+      document.getElementById('iApellido1').style.color = 'red'
+      document.getElementById('iApellido1').style.borderColor = 'red'
       validado = false
+    } else {
+      document.getElementById('iApellido1').style.color = 'black'
+      document.getElementById('iApellido1').style.borderColor = 'black'
     }
   }
-  //Valida la fecha.
-  if (validado) {
-    if (iFecha.value == '') {
-      mensaje = 'No se ha introducido una fecha.'
+
+  //Valida el Apellido2.
+  if (evt.target.id === 'iApellido2' || evt.target.id === 'bGrabar') {
+    let patron = /^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]+$"/
+    let resultado = patron.test(iApellido2.value.trim())
+    if (!resultado) {
+      mensaje = 'Segundo apellido no válido. Caracteres admitidos: "a-zA-ZñÑáéíóúÁÉÍÓÚüÜ".'
+      document.getElementById('iApellido2').style.color = 'red'
+      document.getElementById('iApellido2').style.borderColor = 'red'
       validado = false
+    } else {
+      document.getElementById('iApellido2').style.color = 'black'
+      document.getElementById('iApellido2').style.borderColor = 'black'
     }
   }
-  //Valida fecha anterior o igual a la actual.
-  if (validado) {
-    let fecha = iFecha.value.replaceAll('-', '')
-    if (fecha > obtenerFechaActual().replaceAll('-', '')) {
-      mensaje = 'La fecha introducida es posterior a la actual.'
+
+  //Valida la Dirección.
+  if (evt.target.id === 'iApellido2' || evt.target.id === 'bGrabar') {
+    let patron = /^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]+$"/
+    let resultado = patron.test(iApellido2.value.trim())
+    if (!resultado) {
+      mensaje = 'Segundo apellido no válido. Caracteres admitidos: "a-zA-ZñÑáéíóúÁÉÍÓÚüÜ".'
+      document.getElementById('iApellido2').style.color = 'red'
+      document.getElementById('iApellido2').style.borderColor = 'red'
       validado = false
+    } else {
+      document.getElementById('iApellido2').style.color = 'black'
+      document.getElementById('iApellido2').style.borderColor = 'black'
     }
   }
-  //Valida la latitud.
-  if (validado) {
-    if (iLatitud.value == '') {
-      mensaje = 'Debe definir la posición del dispositivo haciendo click sobre el mapa.'
+
+  //Valida el e-mail.
+  if (evt.target.id === 'iApellido2' || evt.target.id === 'bGrabar') {
+    let patron = /^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]+$"/
+    let resultado = patron.test(iApellido2.value.trim())
+    if (!resultado) {
+      mensaje = 'Segundo apellido no válido. Caracteres admitidos: "a-zA-ZñÑáéíóúÁÉÍÓÚüÜ".'
+      document.getElementById('iApellido2').style.color = 'red'
+      document.getElementById('iApellido2').style.borderColor = 'red'
       validado = false
+    } else {
+      document.getElementById('iApellido2').style.color = 'black'
+      document.getElementById('iApellido2').style.borderColor = 'black'
     }
   }
-  //Valida la longitud.
-  if (validado) {
-    if (iLongitud.value == '') {
-      mensaje = 'Debe definir la posición del dispositivo haciendo click sobre el mapa.'
+
+  //Valida el teléfono.
+  if (evt.target.id === 'iApellido2' || evt.target.id === 'bGrabar') {
+    let patron = /^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]+$"/
+    let resultado = patron.test(iApellido2.value.trim())
+    if (!resultado) {
+      mensaje = 'Segundo apellido no válido. Caracteres admitidos: "a-zA-ZñÑáéíóúÁÉÍÓÚüÜ".'
+      document.getElementById('iApellido2').style.color = 'red'
+      document.getElementById('iApellido2').style.borderColor = 'red'
       validado = false
+    } else {
+      document.getElementById('iApellido2').style.color = 'black'
+      document.getElementById('iApellido2').style.borderColor = 'black'
     }
   }
-  //Valida la dirección.
-  if (validado) {
-    if (iDireccion.value == '') {
-      mensaje = 'Debe definir la posición del dispositivo haciendo click sobre el mapa.'
+
+  //Valida la Iban.
+  if (evt.target.id === 'iApellido2' || evt.target.id === 'bGrabar') {
+    let patron = /^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]+$"/
+    let resultado = patron.test(iApellido2.value.trim())
+    if (!resultado) {
+      mensaje = 'Segundo apellido no válido. Caracteres admitidos: "a-zA-ZñÑáéíóúÁÉÍÓÚüÜ".'
+      document.getElementById('iApellido2').style.color = 'red'
+      document.getElementById('iApellido2').style.borderColor = 'red'
       validado = false
+    } else {
+      document.getElementById('iApellido2').style.color = 'black'
+      document.getElementById('iApellido2').style.borderColor = 'black'
     }
   }
-  //Valida la descripción.
-  if (validado) {
-    if (iDescripcion.value == '') {
-      mensaje = 'Debe definir la posición del dispositivo haciendo click sobre el mapa.'
-      validado = false
-    }
-  }
+
   //Muestra mensaje si no está validado.
   if (!validado) {
     mostrarVentanaEmergente(mensaje, 'error')
