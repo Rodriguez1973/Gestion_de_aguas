@@ -133,5 +133,3 @@ function calcularDistancia2Puntos(posicionInicial, posicionFinal){
 //--------------------------------------------------------------------------------------------------
 //Llamada a la función que muestra el mapa.
 mostrarMapa() //Muestra el mapa.
-
-//------------------------------------------------------------------------------

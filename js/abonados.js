@@ -69,7 +69,7 @@ function nuevoRegistro() {
 function primerRegistro() {
   borrarMarcadores()
   //Registros cuyo Id>=0 ordenados de forma ascendente.
-  let datosRequeridos = 'order by Id ASC'
+  let datosRequeridos = 'order by NIF ASC'
   solicitarRegistro(datosRequeridos)
   grabar = false
   habilitarBotones()
@@ -79,7 +79,7 @@ function primerRegistro() {
 //Visualiza el último registro de la base de datos.
 function ultimoRegistro() {
   //Registros cuyo Id>=0 ordenados de forma descendente.
-  let datosRequeridos = 'order by Id DESC'
+  let datosRequeridos = 'order by NIF DESC'
   solicitarRegistro(datosRequeridos)
   grabar = false
   habilitarBotones()
@@ -91,7 +91,7 @@ function siguienteRegistro() {
   if (iNIF.value != '') {
     siguiente = true
     //Registros cuyo Id>que el Id del registro actual ordenados de forma ascendente.
-    let datosRequeridos = 'where id>' + iNIF.value + ' order by id asc'
+    let datosRequeridos = 'where NIF>' + iNIF.value + ' order by NIF asc'
     solicitarRegistro(datosRequeridos)
   } else {
     mostrarVentanaEmergente('No existe un registro siguiente.', 'info')
@@ -105,7 +105,7 @@ function anteriorRegistro() {
   if (iNIF.value != '') {
     anterior = true
     //Registros cuyo Id<que el Id del registro actual ordenados de forma descendente.
-    let datosRequeridos = 'where id<' + iNIF.value + ' order by id desc'
+    let datosRequeridos = 'where NIF<' + iNIF.value + ' order by NIF desc'
     solicitarRegistro(datosRequeridos)
   } else {
     mostrarVentanaEmergente('No existe un registro anterior.', 'info')
@@ -128,8 +128,6 @@ function cambiarGrabar() {
   grabar = true
   habilitarBotones()
   limpiarCampos()
-  iApellido2.value = obtenerHoraActual()
-  iDireccion.value = obtenerFechaActual()
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -206,6 +204,7 @@ function limpiarCampos() {
 //--------------------------------------------------------------------------------------------------
 //Muestra la consulta en la interfaz.
 function mostrarConsulta(datos) {
+  console.log(datos)
   let lista = JSON.parse(datos)
   if (lista != null) {
     rellenarCampos(lista[0])

@@ -12,12 +12,11 @@ include('conexionBD.php');
 $contenido=$_POST['Envio'];
 //Si hay error en la conexión.
 if ($connect->connect_errno) {
-    echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    echo "Fallo al conectar a MySQL: (" . $connect->connect_errno . ") " . $connect->connect_error;
 //Si no hay error en la conexión.
 } else{
     //Consulta a realizar a la base de datos.
     $sql = "SELECT * FROM abonados " . $contenido . " LIMIT 1;";
-    echo $sql;
     //Realiza la consulta contra la base de datos.
     $resultado = mysqli_query($connect, $sql);
     //Busca el próximo registro de un conjunto de resultados como un array asociativo.

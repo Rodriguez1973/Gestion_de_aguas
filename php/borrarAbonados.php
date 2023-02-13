@@ -7,13 +7,13 @@ Borrar registro de la base de datos.
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: Content-Type');
-include('conexionBd.php');
+include('conexionBD.php');
 
 //Recibe el array con los datos JSON.
 $NIF = $_POST['NIF'];
 //Si hay error en la conexión.
 if ($connect->connect_errno) {
-    echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    echo "Fallo al conectar a MySQL: (" . $connect->connect_errno . ") " . $connect->connect_error;
 //Si no hay error en la conexión.
 } else {
     //Consulta de actualización en la base de datos.
