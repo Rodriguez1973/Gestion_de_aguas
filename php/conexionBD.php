@@ -1,7 +1,7 @@
 <?php
 /*
 Proyecto realizado por: José A. Rodríguez López
-Fecha: 06/02/2022
+Fecha: 13/02/2022
 Conexión a la base de datos.
 */
 
