@@ -11,7 +11,7 @@ class PDF extends FPDF
 		$this->SetFont('Arial', 'B', 24);
 		// Posición: a 1,5 cm del final
 		$this->SetX(75);
-		$this->Cell(265, 10, utf8_decode('Listado Abonados'), 0, 0, 'C');
+		$this->Cell(265, 10, utf8_decode('Listado Caudalímetros'), 0, 0, 'C');
 		$this->Ln();
 		$this->Cell(70);
 		$this->SetFillColor(255, 255, 255);
@@ -35,7 +35,7 @@ class PDF extends FPDF
 	}
 }
 
-$w = array(20, 40, 40, 40, 60, 120, 30, 50); //Ancho de las celdas de la tabla.
+$w = array(40, 40, 40, 40, 40, 170, 50); //Ancho de las celdas de la tabla.
 $alturafila = 8; //Altura de la fila.
 
 //Creación del objeto de la clase heredada
@@ -50,14 +50,14 @@ $pdf->SetTextColor(40, 63, 156);
 //Ancho del borde (0.3mm)
 $pdf->SetLineWidth(0.3);
 
-$pdf->Cell($w[0], $alturafila, utf8_decode('NIF'), 1, 0, 'C', True);
-$pdf->Cell($w[1], $alturafila, utf8_decode('Nombre'), 1, 0, 'C', True);
-$pdf->Cell($w[2], $alturafila, utf8_decode('Apellido 1'), 1, 0, 'C', True);
-$pdf->Cell($w[3], $alturafila, utf8_decode('Apellido 2'), 1, 0, 'C', True);
-$pdf->Cell($w[4], $alturafila, utf8_decode('email'), 1, 0, 'C', True);
-$pdf->Cell($w[5], $alturafila, utf8_decode('Dirección'), 1, 0, 'C', True);
-$pdf->Cell($w[6], $alturafila, utf8_decode('Teléfono'), 1, 0, 'C', True);
-$pdf->Cell($w[7], $alturafila, utf8_decode('IBAN'), 1, 1, 'C', True);
+$pdf->Cell($w[0], $alturafila, utf8_decode('ID'), 1, 0, 'C', True);
+$pdf->Cell($w[1], $alturafila, utf8_decode('NIF Abonado'), 1, 0, 'C', True);
+$pdf->Cell($w[2], $alturafila, utf8_decode('Puesta en servicio'), 1, 0, 'C', True);
+$pdf->Cell($w[3], $alturafila, utf8_decode('Latitud'), 1, 0, 'C', True);
+$pdf->Cell($w[4], $alturafila, utf8_decode('Longitud'), 1, 0, 'C', True);
+$pdf->Cell($w[5], $alturafila, utf8_decode('Direccion'), 1, 0, 'C', True);
+$pdf->Cell($w[6], $alturafila, utf8_decode('Medición'), 1, 1, 'C', True);
+
 
 $pdf->SetFont('Arial', '', 10);
 $pdf->SetDrawColor(0, 80, 180);
@@ -77,16 +77,16 @@ function cabecera($pdf)
 	// Ancho del borde (0.3mm)
 	$pdf->SetLineWidth(0.3);
 	$alturafila = 8; //Altura de la fila.
-	$w = array(20, 40, 40, 40, 60, 120, 30, 50); //Ancho de las celdas de la tabla.
+	$w = array(40, 40, 40, 40, 40, 170, 50); //Ancho de las celdas de la tabla.
 
-	$pdf->Cell($w[0], $alturafila, utf8_decode('NIF'), 1, 0, 'C', True);
-	$pdf->Cell($w[1], $alturafila, utf8_decode('Nombre'), 1, 0, 'C', True);
-	$pdf->Cell($w[2], $alturafila, utf8_decode('Apellido 1'), 1, 0, 'C', True);
-	$pdf->Cell($w[3], $alturafila, utf8_decode('Apellido 2'), 1, 0, 'C', True);
-	$pdf->Cell($w[4], $alturafila, utf8_decode('email'), 1, 0, 'C', True);
-	$pdf->Cell($w[5], $alturafila, utf8_decode('Dirección'), 1, 0, 'C', True);
-	$pdf->Cell($w[6], $alturafila, utf8_decode('Teléfono'), 1, 0, 'C', True);
-	$pdf->Cell($w[7], $alturafila, utf8_decode('IBAN'), 1, 1, 'C', True);
+	$pdf->Cell($w[0], $alturafila, utf8_decode('ID Dispositivo'), 1, 0, 'C', True);
+	$pdf->Cell($w[1], $alturafila, utf8_decode('NIF Abonado'), 1, 0, 'C', True);
+	$pdf->Cell($w[2], $alturafila, utf8_decode('Puesta en servicio'), 1, 0, 'C', True);
+	$pdf->Cell($w[3], $alturafila, utf8_decode('Latitud'), 1, 0, 'C', True);
+	$pdf->Cell($w[4], $alturafila, utf8_decode('Longitud'), 1, 0, 'C', True);
+	$pdf->Cell($w[5], $alturafila, utf8_decode('Direccion'), 1, 0, 'C', True);
+	$pdf->Cell($w[6], $alturafila, utf8_decode('Medición'), 1, 1, 'C', True);
+
 
 	$pdf->SetFont('Arial', '', 10);
 	$pdf->SetDrawColor(0, 80, 180);
@@ -100,7 +100,7 @@ include '../php/conexionBD.php';
 if ($connect->connect_errno) {
 	echo "Fallo al conectar a MySQL: (" . $connect->connect_errno . ") " . $connect->connect_error;
 } else {
-	$sql = "select * from abonados order by NIF";
+	$sql = "select * from dispositivos order by Id;";
 	$resultado = mysqli_query($connect, $sql);
 
 	if (!$resultado) {
@@ -113,13 +113,12 @@ if ($connect->connect_errno) {
 			$pdf->SetFont('Arial', 'B', 10);
 			$pdf->Cell($w[0], $alturafila, utf8_decode($fila[0]), 1, 0, 'L', $pintaFondo);
 			$pdf->Cell($w[1], $alturafila, utf8_decode($fila[1]), 1, 0, 'L', $pintaFondo);
-			$pdf->Cell($w[2], $alturafila, utf8_decode($fila[2]), 1, 0, 'L', $pintaFondo);
+			$pdf->Cell($w[2], $alturafila, utf8_decode($fila[2]), 1, 0, 'C', $pintaFondo);
 			$pdf->SetFont('Arial', '', 10);
 			$pdf->Cell($w[3], $alturafila, utf8_decode($fila[3]), 1, 0, 'L', $pintaFondo);
-			$pdf->Cell($w[4], $alturafila, utf8_decode($fila[5]), 1, 0, 'L', $pintaFondo);
-			$pdf->Cell($w[5], $alturafila, utf8_decode($fila[4]), 1, 0, 'L', $pintaFondo);
-			$pdf->Cell($w[6], $alturafila, utf8_decode($fila[6]), 1, 0, 'L', $pintaFondo);
-			$pdf->Cell($w[7], $alturafila, utf8_decode($fila[7]), 1, 0, 'L', $pintaFondo);
+			$pdf->Cell($w[4], $alturafila, utf8_decode($fila[4]), 1, 0, 'L', $pintaFondo);
+			$pdf->Cell($w[5], $alturafila, utf8_decode($fila[5]), 1, 0, 'L', $pintaFondo);
+			$pdf->Cell($w[6], $alturafila, utf8_decode($fila[6]), 1, 0, 'R', $pintaFondo);
 			$pdf->Ln();
 			if ($pintaFondo == 'True') {
 				$pintaFondo = '';
@@ -138,7 +137,7 @@ if ($connect->connect_errno) {
 
 	mysqli_free_result($resultado);
 	$pdf->Ln();
-	$filename = "Abonados_aguas.pdf";
+	$filename = "Caudalímetros_agua.pdf";
 	$pdf->Output($filename, "D");
 }
 ?>

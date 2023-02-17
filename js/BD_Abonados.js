@@ -140,7 +140,6 @@ function grabarRegistro(nuevoRegistro) {
         if (respuesta[0] === 'Registro modificado correctamente.') {
           mostrarVentanaEmergente(respuesta[0], 'success')
         } else if(respuesta[0]==='Registro grabado correctamente.'){
-          iNIF.value=respuesta[1]
           mostrarVentanaEmergente(respuesta[0], 'success') 
         } else {
           mostrarVentanaEmergente(respuesta[0], 'error')

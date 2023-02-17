@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="./css/estilosAbonados.css">
     <link rel="icon" href="data:,"> <!--Elimina error favicon.ico-->
     <!--Google Maps-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeNRBEIWYeWRRvY8On_9pkSD1_J_zLykQ&libraries=geometry"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeNRBEIWYeWRRvY8On_9pkSD1_J_zLykQ&libraries=geometry" defer></script>
     <!-- SweetAlert -->
     <!--Plugin con el cual podremos dar un aspecto profesional a los mensajes que lancemos a los usuarios acorde a las tendencias actuales -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9" defer></script>
     <!--Script operaciones Google Maps-->
-    <script src="./js/googleMaps.js" defer></script>
+    <script src="./js/GoogleMaps1.js" defer></script>
     <!--Script operaciones contra la base de datos-->
     <script src="./js/BD_Abonados.js" defer></script>
     <!--Script funciones-->
@@ -53,8 +53,7 @@
                     <input type="button" id="bAnterior" value="Anterior">
                 </li>
                 <li>
-                    <a
-                        href="http://www.informaticasc.com/curso22_23/Rodriguez/Gestion_Aguas/pdf/ListadoAbonados.php">
+                    <a href="http://www.informaticasc.com/curso22_23/Rodriguez/Gestion_Aguas/pdf/ListadoAbonados.php">
                         <input type="button" id="bListado" value="Listado Abonados">
                     </a>
                 </li>
@@ -77,7 +76,8 @@
                                     <label for="iNIF">NIF</label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="text" class="campo" id="iNIF" name="iNIF" style="width:95px" value="" placeholder="NIF.">
+                                    <input type="text" class="campo" id="iNIF" name="iNIF" style="width:95px" value=""
+                                        placeholder="NIF.">
                                 </div>
                             </div>
                             <div class="row">
@@ -85,7 +85,8 @@
                                     <label for="iNombre">Nombre</label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="text" class="campo" id="iNombre" name="iNombre" style="width:250px" value="" placeholder="Nombre.">
+                                    <input type="text" class="campo" id="iNombre" name="iNombre" style="width:250px"
+                                        value="" placeholder="Nombre.">
                                 </div>
                             </div>
                             <div class="row">
@@ -93,7 +94,8 @@
                                     <label for="iApellido1">Primer apellido</label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="text" class="campo" id="iApellido1" name="iApellido1" style="width:250px" value="" placeholder="Primer apellido.">
+                                    <input type="text" class="campo" id="iApellido1" name="iApellido1"
+                                        style="width:250px" value="" placeholder="Primer apellido.">
                                 </div>
                             </div>
                             <div class="row">
@@ -101,7 +103,9 @@
                                     <label for="iApellido2">Segundo apellido</label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="text" class="campo" id="iApellido2" name="iApellido2" style="width:250px" style="width:300px" value="" placeholder="Segundo apellido.">
+                                    <input type="text" class="campo" id="iApellido2" name="iApellido2"
+                                        style="width:250px" style="width:300px" value=""
+                                        placeholder="Segundo apellido.">
                                 </div>
                             </div>
                             <div class="row">
@@ -109,8 +113,9 @@
                                     <label for="iDireccion">Dirección</label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="text" class="campo" id="iDireccion" name="iDireccion" style="width:600px" 
-                                    placeholder="Ingresar o marcar localización en el mapa." value="">
+                                    <input type="text" class="campo" id="iDireccion" name="iDireccion"
+                                        style="width:600px" placeholder="Ingresar o marcar localización en el mapa."
+                                        value="">
                                 </div>
                             </div>
                             <div class="row">
@@ -118,7 +123,8 @@
                                     <label for="iMail">E-mail</label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="email" class="campo" id="iMail" name="iMail" style="width:250px" placeholder="E-mail." value="">
+                                    <input type="email" class="campo" id="iMail" name="iMail" style="width:250px"
+                                        placeholder="E-mail." value="">
                                 </div>
                             </div>
                             <div class="row">
@@ -126,7 +132,8 @@
                                     <label for="iTelefono">Teléfono</label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="text" class="campo" id="iTelefono" name="iTelefono" style="width:120px" placeholder="Teléfono." value="">
+                                    <input type="text" class="campo" id="iTelefono" name="iTelefono" style="width:120px"
+                                        placeholder="Teléfono." value="">
                                 </div>
                             </div>
                             <div class="row">
@@ -134,7 +141,8 @@
                                     <label for="iIban">IBAN</label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="text" class="campo" id="iIban" name="iIban" style="width:300px" placeholder="IBAN." value="">
+                                    <input type="text" class="campo" id="iIban" name="iIban" style="width:300px"
+                                        placeholder="IBAN." value="">
                                 </div>
                             </div>
                         </form>

@@ -87,8 +87,6 @@ function mostrarDireccion(latlng, direccion) {
   iDireccion.value = direccion
   iLatitud.value = latlng.lat()
   iLongitud.value = latlng.lng()
-  let posicionMapa=new google.maps.LatLng(latlng.lat(), latlng.lng())
-  iDescripcion.value ="Distancia al origen: " + Math.round(calcularDistancia2Puntos(posicionOrigen,posicionMapa)*100)/100+"m."
   mostrarDireccionDebajoMapa(direccion)
 }
 

@@ -12,7 +12,7 @@ async function solicitarRegistro(datosRequeridos) {
 
   ajaxrequest.open(
     'POST',
-    'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_Aguas/php/consultarAbonados.php',
+    'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_Aguas/php/consultarDispositivos.php',
     true,
   )
   ajaxrequest.setRequestHeader(
@@ -43,9 +43,10 @@ async function solicitarRegistro(datosRequeridos) {
 function grabarRegistro(nuevoRegistro) {
   let dispositivo =
     '{"' +
-    'NIF'+
+    'NIF' +
     '":' +
-    iNIF.value +
+    '"' +
+    sNIF.value +
     '",' +
     '"' +
     'Puesta_servicio' +
@@ -70,8 +71,15 @@ function grabarRegistro(nuevoRegistro) {
     '":' +
     '"' +
     iDireccion.value +
+    '",' +
+    '"' +
+    'Medida' +
+    '":' +
+    '"' +
+    iMedida.value +
     '"}'
-    
+  
+
   //Proporciona una forma fácil de obtener información de una URL sin tener que recargar la página completa. XMLHttpRequest es ampliamente usado en la programación AJAX.
   //A pesar de su nombre, XMLHttpRequest puede ser usado para recibir cualquier tipo de dato, no solo XML, y admite otros formatos además de HTTP (incluyendo file y ftp).
   let ajaxrequest = new XMLHttpRequest()
@@ -81,26 +89,26 @@ function grabarRegistro(nuevoRegistro) {
     //Inicializa una solicitud recién creada o reinicializa una existente.
     ajaxrequest.open(
       'POST',
-      'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_Aguas/php/grabarAbonados.php',
+      'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_Aguas/php/grabarDispositivos.php',
       true,
     )
     //Es una modificación.
   } else {
     //Existe registro a modificar.
-    if (iNIF.value != '') {
-      abonado =
-        '{"' + 'NIF' + '":' + '"' + iNIF.value + '",' + abonado.replace('{', '')
+    if (iId.value != '') {
+      dispositivo =
+        '{"' + 'Id' + '":' + '"' + iId.value + '",' + dispositivo.replace('{', '')
 
       //Inicializa una solicitud recién creada o reinicializa una existente.
       ajaxrequest.open(
         'POST',
-        'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_Aguas/php/modificarAbonados.php',
+        'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_Aguas/php/modificarDispositivos.php',
         true,
       )
     }
   }
 
-  if (nuevoRegistro || iNIF.value != '') {
+  if (nuevoRegistro || iId.value != '') {
     //Establece el valor encabezado de una solicitud HTTP. Al usarse, debe llamarse después de llamar a open(), pero antes de llamar a send().
     //Si se llama a este método varias veces con el mismo encabezado, los valores se combinan en un único encabezado de solicitud.setRequestHeader()
     ajaxrequest.setRequestHeader(
@@ -115,7 +123,7 @@ function grabarRegistro(nuevoRegistro) {
         if (respuesta[0] === 'Registro modificado correctamente.') {
           mostrarVentanaEmergente(respuesta[0], 'success')
         } else if (respuesta[0] === 'Registro grabado correctamente.') {
-          iNIF.value = respuesta[1]
+          iId.value = respuesta[1]
           mostrarVentanaEmergente(respuesta[0], 'success')
         } else {
           mostrarVentanaEmergente(respuesta[0], 'error')
@@ -129,7 +137,7 @@ function grabarRegistro(nuevoRegistro) {
     )
 
     //Envía la solicitud al servidor.
-    let envio = 'Todo=' + dispositivoIOTJSON
+    let envio = 'Todo=' + dispositivo
     ajaxrequest.send(envio)
   } else {
     mostrarVentanaEmergente(
@@ -142,7 +150,7 @@ function grabarRegistro(nuevoRegistro) {
 //--------------------------------------------------------------------------------------------------
 //Función que graba o modifica un registro en la base de datos.
 function borrarRegistro() {
-  if (iNIF.value != '') {
+  if (iId.value != '') {
     //Proporciona una forma fácil de obtener información de una URL sin tener que recargar la página completa. XMLHttpRequest es ampliamente usado en la programación AJAX.
     //A pesar de su nombre, XMLHttpRequest puede ser usado para recibir cualquier tipo de dato, no solo XML, y admite otros formatos además de HTTP (incluyendo file y ftp).
     let ajaxrequest = new XMLHttpRequest()
@@ -150,7 +158,7 @@ function borrarRegistro() {
     //Inicializa una solicitud recién creada o reinicializa una existente.
     ajaxrequest.open(
       'POST',
-      'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_Aguas/php/borrarAbonados.php',
+      'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_Aguas/php/borrarDispositivos.php',
       true,
     )
     //Cambio de estado a listo,
@@ -181,4 +189,41 @@ function borrarRegistro() {
       'info',
     )
   }
+}
+
+//--------------------------------------------------------------------------------------------------
+//Solicita los registros a la base de datos por tipo.
+async function leerNIFs() {
+  //Proporciona una forma fácil de obtener información de una URL sin tener que recargar la página completa. XMLHttpRequest es ampliamente usado en la programación AJAX.
+  //A pesar de su nombre, XMLHttpRequest puede ser usado para recibir cualquier tipo de dato, no solo XML, y admite otros formatos además de HTTP (incluyendo file y ftp).
+  var ajaxrequest = new XMLHttpRequest()
+
+  //Aquí va la ruta al archivo php que realiza la consulta a la base de datos.
+  ajaxrequest.open(
+    'POST',
+    'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_Aguas/php/consultarNIFs.php',
+    true,
+  )
+
+  ajaxrequest.onreadystatechange = async function () {
+    //alert(ajaxrequest.readyState + "--" + ajaxrequest.status);
+    if (ajaxrequest.readyState === 4 && ajaxrequest.status === 200) {
+      let datosLeidos = ajaxrequest.response
+      if (datosLeidos) {
+        //console.log(datosLeidos)
+        NIFs = JSON.parse(datosLeidos)
+        añadirNIFs(JSON.parse(datosLeidos))
+      } else {
+        NIFs = null
+        //alert('No hay registros que cumplan la condición')
+      }
+    }
+  }
+
+  let envio = "Envio=NIF"
+  ajaxrequest.setRequestHeader(
+    'Content-type',
+    'application/x-www-form-urlencoded',
+  )
+  ajaxrequest.send(envio)
 }

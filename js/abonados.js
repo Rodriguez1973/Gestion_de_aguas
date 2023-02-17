@@ -213,7 +213,7 @@ function limpiarCampos() {
 //--------------------------------------------------------------------------------------------------
 //Muestra la consulta en la interfaz.
 function mostrarConsulta(datos) {
-  console.log(datos)
+  //console.log(datos)
   let lista = JSON.parse(datos)
   if (lista != null) {
     rellenarCampos(lista[0])

@@ -198,7 +198,7 @@ function validarAbonado(evt) {
       evt.target.id === 'bModificar') &&
     validado
   ) {
-    let patron = /^([a-zA-Z]{2})\s*\t*(\d{2})\s*\t*(\d{4})\s*\t*(\d{4})\s*\t*(\d{2})\s*\t*(\d{10})$/
+    let patron = /^[a-zA-Z]{2}(\d{22})$/
     let resultado = patron.test(iIban.value.trim().toUpperCase())
     if (!resultado) {
       mensaje = 'El IBAN no es válido.'
@@ -211,4 +211,77 @@ function validarAbonado(evt) {
     mostrarVentanaEmergente(mensaje, 'error')
   }
   return validado
+}
+
+//--------------------------------------------------------------------------------------------------
+//Valida los datos del dispositivo.
+function validarDispositivo(evt) {
+  let mensaje = ''
+  let validado = true
+
+  //Valida el NIF.
+  if ((evt.target.id === 'bGrabar' || evt.target.id === 'bModificar') && validado) {
+    if (sNIF.value == "") {
+      mensaje = 'NIF del abonado no asignado.'
+      validado = false
+    }
+  }
+
+  //Valida la puesta en servicio.
+  if ((evt.target.id === 'bGrabar' || evt.target.id === 'bModificar') && validado) {
+    console.log(iPuestaServicio.value)
+    let patron = /^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$/
+    var resultado = patron.test(iPuestaServicio.value.trim())
+
+    if (!resultado) {
+      mensaje = 'La fecha introducida no es válida.'
+      validado = false
+    } else {
+      //Procesa fecha para comprobar que es menor o igual a la actual.
+      let fecha = iPuestaServicio.value.replaceAll('-', '')
+      let fechaActual=obtenerFechaActual().replaceAll('-', '')
+      if (fecha > fechaActual) {
+        mensaje = 'La fecha no puede ser posterior a la actual.'
+        validado = false
+      }
+    }
+  }
+
+  //Valida la posición del dispositivo.
+  if ((evt.target.id === 'bGrabar' || evt.target.id === 'bModificar') && validado) {
+    if (iLatitud.value == "" || iLongitud.value == "" || iDireccion == "") {
+      mensaje = 'La ubicación del dispositivo no ha sido introducida en el mapa.'
+      validado = false
+    }
+  }
+
+  //Valida la medida del dispositivo.
+  if ((evt.target.id === 'bGrabar' || evt.target.id === 'bModificar') && validado) {
+    if (!iMedida.value){
+      mensaje = 'No se ha introducidos la medida del dispositivo.'
+      validado = false
+    }else if(iMedida.value < 0 ) {
+      mensaje = 'La medida del dispositivo no puede ser negativa.'
+      validado = false
+    }
+  }
+
+  //Muestra mensaje si no está validado.
+  if (!validado) {
+    mostrarVentanaEmergente(mensaje, 'error')
+  }
+  return validado
+}
+
+//--------------------------------------------------------------------------------------------------
+//Añade los nifs a la select de los NIF.
+function añadirNIFs(datosLeidos) {
+  if (datosLeidos) {
+    for (let i = 0; i < datosLeidos.length; i++) {
+      let opcion = document.createElement('option')
+      opcion.value = datosLeidos[i].NIF
+      opcion.text = datosLeidos[i].NIF
+      sNIF.appendChild(opcion)
+    }
+  }
 }

@@ -22,16 +22,17 @@ foreach ($array as $dato) {
 }
 
 //Si hay error en la conexión.
-if ($connect ->connect_errno) {
+if ($connect->connect_errno) {
 	echo "Fallo al conectar a MySQL: (" . $connect->connect_errno . ") " . $connect->connect_error;
 	//Si no hay error en la conexión.
 } else {
 	if ($tmpArray[0] != "") {
 		//Consulta de inserción en la base de datos.
-		$query = "INSERT INTO abonados(NIF,Nombre,Apellido1,Apellido2,Direccion,Email,Telefono,Iban) VALUES ('$tmpArray[0]','$tmpArray[1]','$tmpArray[2]','$tmpArray[3]','$tmpArray[4]','$tmpArray[5]','$tmpArray[6]','$tmpArray[7]')";
+		$query = "INSERT INTO dispositivos(NIF,Puesta_servicio,Latitud,Longitud,Direccion,Medida) VALUES ('$tmpArray[0]','$tmpArray[1]','$tmpArray[2]','$tmpArray[3]',
+		'$tmpArray[4]',$tmpArray[5])";
 		//Si la consulta se ha realizado correctamente.
 		if (mysqli_query($connect, $query)) {
-			echo "Registro grabado correctamente.*/*";
+			echo "Registro grabado correctamente.*/*" . mysqli_insert_id($connect);
 			//Si la consulta no se ha realizado correctamente.
 		} else {
 			echo "Error al grabar el registro.";

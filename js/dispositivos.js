@@ -7,6 +7,8 @@ let borrado = false //Flag que controla si se ha borrado un registro.
 let siguiente = false //Flag que controla si el flujo va al registro siguiente.
 let anterior = false //Flag que controla si el flujo va al registro anterior.
 let hayDatosBD = false //Flag que controla si se han leído datos en una consulta.
+let dispositivosIOT = null //Dispositivos IOT.
+let NIFs = null //NIFs de los abonados.
 
 //-------------------------------------------------------------------------------------------------
 //Referencias de los objetos del documento.
@@ -19,19 +21,20 @@ const bSiguiente = document.getElementById('bSiguiente')
 const bAnterior = document.getElementById('bAnterior')
 const bListado = document.getElementById('bListado')
 const iId = document.getElementById('iId')
-const iNIF = document.getElementById('iNIF')
+const sNIF = document.getElementById('sNIF')
 const iPuestaServicio = document.getElementById('iPuestaServicio')
 const iLatitud = document.getElementById('iLatitud')
 const iLongitud = document.getElementById('iLongitud')
 const iDireccion = document.getElementById('iDireccion')
+const iMedida = document.getElementById('iMedida')
 
 //--------------------------------------------------------------------------------------------------
 //Definición de eventos de los objetos.
 bGrabar.addEventListener('click', nuevoRegistro, false) //Evento click sobre el botón Grabar datos.
 bModificar.addEventListener(
   'click',
-  function () {
-    if (validarDispotivo()) {
+  function (evt) {
+    if (validarDispositivo(evt)) {
       grabarRegistro(false)
     }
   },
@@ -45,20 +48,25 @@ bAnterior.addEventListener('click', anteriorRegistro, false) //Evento click sobr
 
 //--------------------------------------------------------------------------------------------------
 //Crea un nuevo registro.
-function nuevoRegistro() {
-  borrarMarcadores()
-  if (!grabar) {
-    limpiarCampos()
-    cambiarGrabar()
-  } else {
-    //Grabando.
-    if (validarAbonado()) {
-      grabarRegistro(true)
-      cambiarNuevo()
-      grabar = false
-      hayDatosBD = true
-      habilitarBotones()
+function nuevoRegistro(evt) {
+  //Hay abonados.
+  if (NIFs) {
+    borrarMarcadores()
+    if (!grabar) {
+      limpiarCampos()
+      cambiarGrabar()
+    } else {
+      //Grabando.
+      if (validarDispositivo(evt)) {
+        grabarRegistro(true)
+        cambiarNuevo()
+        grabar = false
+        hayDatosBD = true
+        habilitarBotones()
+      }
     }
+  } else {
+    mostrarVentanaEmergente('No hay abonados dados de alta en el sistema.', 'info')
   }
 }
 
@@ -166,35 +174,38 @@ function habilitarBotones() {
 //--------------------------------------------------------------------------------------------------
 //Limpia los campos del formulario.
 function limpiarCampos() {
-  iId.value = ''
-  iNIF.value = ''
-  iPuestaServicio.value = ''
-  iLatitud.value = ''
-  iLongitud.value = ''
-  iDireccion.value = ''
+  iId.value = ""
+  sNIF.value = ""
+  iPuestaServicio.value = ""
+  iLatitud.value = ""
+  iLongitud.value = ""
+  iDireccion.value = ""
+  iMedida.value = ""
   borrarMarcadores()
   //No hay registros en la BD y no está grabando.
   if (!hayDatosBD && !grabar) {
     iId.disabled = true
-    iNIF.disabled = true
+    sNIF.disabled = true
     iPuestaServicio.disabled = true
     iLatitud.disabled = true
     iLongitud.disabled = true
     iDireccion.disabled = true
+    iMedida.disabled = true
   } else {
-    iId.disabled = false
-    iNIF.disabled = false
+    sNIF.disabled = false
     iPuestaServicio.disabled = false
     iLatitud.disabled = false
     iLongitud.disabled = false
     iDireccion.disabled = false
+    iMedida.disabled = false
+    iMedida.value = 0
   }
 }
 
 //--------------------------------------------------------------------------------------------------
 //Muestra la consulta en la interfaz.
 function mostrarConsulta(datos) {
-  console.log(datos)
+  //console.log(datos)
   let lista = JSON.parse(datos)
   if (lista != null) {
     rellenarCampos(lista[0])
@@ -243,15 +254,16 @@ function mostrarVentanaEmergente(mensaje, icono) {
 //--------------------------------------------------------------------------------------------------
 //Rellena los campos en la interfaz.
 function rellenarCampos(registro) {
-  iNIF.value = registro.NIF
-  iNombre.value = registro.Nombre
-  iApellido1.value = registro.Apellido1
-  iApellido2.value = registro.Apellido2
+  iId.value = registro.Id
+  sNIF.value = registro.NIF
+  iPuestaServicio.value = registro.Puesta_servicio
+  iLatitud.value = registro.Latitud
+  iLongitud.value = registro.Longitud
   iDireccion.value = registro.Direccion
-  iMail.value = registro.Email
-  iTelefono.value = registro.Telefono
-  iIban.value = registro.Iban
+  iMedida.value = registro.Medida
 }
 
 //--------------------------------------------------------------------------------------------------
+//Inicio de ejecución.
+leerNIFs() //Lee los NIFs y los añade a la select.
 primerRegistro() //Muestra el primer registro.

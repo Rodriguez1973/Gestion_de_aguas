@@ -8,13 +8,12 @@
     <link rel="stylesheet" href="./css/estilosDispositivos.css">
     <link rel="icon" href="data:,"> <!--Elimina error favicon.ico-->
     <!--Google Maps-->
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeNRBEIWYeWRRvY8On_9pkSD1_J_zLykQ&libraries=geometry"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeNRBEIWYeWRRvY8On_9pkSD1_J_zLykQ&libraries=geometry" defer></script>
     <!-- SweetAlert -->
     <!--Plugin con el cual podremos dar un aspecto profesional a los mensajes que lancemos a los usuarios acorde a las tendencias actuales -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9" defer></script>
     <!--Script operaciones Google Maps-->
-    <script src="./js/googleMaps.js" defer></script>
+    <script src="./js/GoogleMaps2.js" defer></script>
     <!--Script operaciones contra la base de datos-->
     <script src="./js/BD_Dispositivos.js" defer></script>
     <!--Script funciones-->
@@ -55,7 +54,7 @@
                 </li>
                 <li>
                     <a
-                        href="http://www.informaticasc.com/curso22_23/Rodriguez/Dispositivos_IOT/pdf/ListadoDispositivos.php">
+                        href="http://www.informaticasc.com/curso22_23/Rodriguez/Gestion_Aguas/pdf/ListadoDispositivos.php">
                         <input type="button" id="bListado" value="Listado Dispositivos">
                     </a>
                 </li>
@@ -75,19 +74,19 @@
                         <form name="form" id="form">
                             <div class="row">
                                 <div class="col-25">
-                                    <label for="iId">Id</label>
+                                    <label for="iId">Id Dispositivo</label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="text" class="campo" id="iId" name="iId" style="width:95px" value="" 
-                                    placeholder="Identificador.">
+                                    <input type="text" class="campo" id="iId" name="iId" style="width:95px" value=""
+                                        placeholder="Identificador." readonly>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-25">
-                                    <label for="iNIF">NIF</label>
+                                    <label for="iNIF">NIF Abonado</label>
                                 </div>
                                 <div class="col-75">
-                                    <select id="iNIF">
+                                    <select id="sNIF">
                                         <option class="campo" value="" disabled>Selecciona NIF.</option>
                                     </select>
                                 </div>
@@ -106,7 +105,8 @@
                                     <label for="iLatitud">Latitud</label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="text" class="campo" id="iLatitud" name="iLatitud" style="width:200px" value="" placeholder="Localización mapa." readonly>
+                                    <input type="text" class="campo" id="iLatitud" name="iLatitud" style="width:200px"
+                                        value="" placeholder="Localización mapa." readonly>
                                 </div>
                             </div>
                             <div class="row">
@@ -123,7 +123,17 @@
                                     <label for="direccion">Dirección</label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="text" class="campo" id="iDireccion" name="iDireccion" style="width:600px" placeholder="Dirección." value="" readonly>
+                                    <input type="text" class="campo" id="iDireccion" name="iDireccion"
+                                        style="width:600px" placeholder="Dirección." value="" readonly>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="iMedida">Medición</label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="number" class="campo" id="iMedida" name="iMedida" style="width:150px"
+                                        placeholder="Medición." value="" step="0.01">
                                 </div>
                             </div>
                         </form>
