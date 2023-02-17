@@ -28,7 +28,7 @@ if ($connect->connect_errno) {
 		$query = "INSERT INTO abonados(NIF,Nombre,Apellido1,Apellido2,Direccion,Email,Telefono,Iban) VALUES ('$tmpArray[0]','$tmpArray[1]','$tmpArray[2]','$tmpArray[3]','$tmpArray[4]','$tmpArray[5]','$tmpArray[6]','$tmpArray[7]')";
 		//Si la consulta se ha realizado correctamente.
 		if(mysqli_query($connect,$query)){
-        	echo "Registro grabado correctamente.*/*" . mysqli_insert_id($connect);
+        	echo "Registro grabado correctamente.*/*";
 		//Si la consulta no se ha realizado correctamente.
 		}else{
 			echo "Error al grabar el registro.";
