@@ -25,12 +25,12 @@ async function solicitarRegistro(datosRequeridos) {
       let datosLeidos = ajaxrequest.responseText
       if (datosLeidos) {
         mostrarConsulta(datosLeidos)
-        habilitarBotones();
+        habilitarBotones()
       }
     }
   }
   let envio = 'Envio=' + datosRequeridos
-  
+
   ajaxrequest.setRequestHeader(
     'Content-type',
     'application/x-www-form-urlencoded',
@@ -41,56 +41,37 @@ async function solicitarRegistro(datosRequeridos) {
 //--------------------------------------------------------------------------------------------------
 //Función que graba o modifica un registro en la base de datos.
 function grabarRegistro(nuevoRegistro) {
-  let abonado =
+  let dispositivo =
     '{"' +
-    'NIF' +
+    'NIF'+
     '":' +
-    '"' +
-    iNIF.value.toUpperCase() +
+    iNIF.value +
     '",' +
     '"' +
-    'Nombre' +
+    'Puesta_servicio' +
     '":' +
     '"' +
-    capitalize(iNombre.value) +
+    iPuestaServicio.value +
     '",' +
     '"' +
-    'Apellido1' +
+    'Latitud' +
     '":' +
     '"' +
-    capitalize(iApellido1.value) +
+    iLatitud.value +
     '",' +
     '"' +
-    'Apellido2' +
+    'Longitud' +
     '":' +
     '"' +
-    capitalize(iApellido2.value) +
+    iLongitud.value +
     '",' +
     '"' +
     'Direccion' +
     '":' +
     '"' +
     iDireccion.value +
-    '",' +
-    '"' +
-    'Email' +
-    '":' +
-    '"' +
-    iMail.value +
-    '",' +
-    '"' +
-    'Telefono' +
-    '":' +
-    '"' +
-    iTelefono.value +
-    '",' +
-    '"' +
-    'Iban' +
-    '":' +
-    '"' +
-    iIban.value.toUpperCase() +
     '"}'
-
+    
   //Proporciona una forma fácil de obtener información de una URL sin tener que recargar la página completa. XMLHttpRequest es ampliamente usado en la programación AJAX.
   //A pesar de su nombre, XMLHttpRequest puede ser usado para recibir cualquier tipo de dato, no solo XML, y admite otros formatos además de HTTP (incluyendo file y ftp).
   let ajaxrequest = new XMLHttpRequest()
@@ -108,13 +89,7 @@ function grabarRegistro(nuevoRegistro) {
     //Existe registro a modificar.
     if (iNIF.value != '') {
       abonado =
-        '{"' +
-        'NIF' +
-        '":' +
-        '"' +
-        iNIF.value +
-        '",' +
-        abonado.replace('{', '')
+        '{"' + 'NIF' + '":' + '"' + iNIF.value + '",' + abonado.replace('{', '')
 
       //Inicializa una solicitud recién creada o reinicializa una existente.
       ajaxrequest.open(
@@ -126,7 +101,7 @@ function grabarRegistro(nuevoRegistro) {
   }
 
   if (nuevoRegistro || iNIF.value != '') {
-    //Establece el valor encabezado de una solicitud HTTP. Al usarse, debe llamarse después de llamar a open(), pero antes de llamar a send(). 
+    //Establece el valor encabezado de una solicitud HTTP. Al usarse, debe llamarse después de llamar a open(), pero antes de llamar a send().
     //Si se llama a este método varias veces con el mismo encabezado, los valores se combinan en un único encabezado de solicitud.setRequestHeader()
     ajaxrequest.setRequestHeader(
       'Content-type',
@@ -136,12 +111,12 @@ function grabarRegistro(nuevoRegistro) {
     ajaxrequest.onreadystatechange = function () {
       //alert(ajaxrequest.readyState + '--' + ajaxrequest.status)
       if (ajaxrequest.readyState === 4 && ajaxrequest.status === 200) {
-        let respuesta = ajaxrequest.responseText.split('*/*');
+        let respuesta = ajaxrequest.responseText.split('*/*')
         if (respuesta[0] === 'Registro modificado correctamente.') {
           mostrarVentanaEmergente(respuesta[0], 'success')
-        } else if(respuesta[0]==='Registro grabado correctamente.'){
-          iNIF.value=respuesta[1]
-          mostrarVentanaEmergente(respuesta[0], 'success') 
+        } else if (respuesta[0] === 'Registro grabado correctamente.') {
+          iNIF.value = respuesta[1]
+          mostrarVentanaEmergente(respuesta[0], 'success')
         } else {
           mostrarVentanaEmergente(respuesta[0], 'error')
         }
@@ -154,10 +129,13 @@ function grabarRegistro(nuevoRegistro) {
     )
 
     //Envía la solicitud al servidor.
-    let envio = 'Todo=' + abonado
+    let envio = 'Todo=' + dispositivoIOTJSON
     ajaxrequest.send(envio)
-  }else{
-    mostrarVentanaEmergente("No hay un registro seleccionado para modificar.",'info')
+  } else {
+    mostrarVentanaEmergente(
+      'No hay un registro seleccionado para modificar.',
+      'info',
+    )
   }
 }
 
@@ -181,8 +159,8 @@ function borrarRegistro() {
       if (ajaxrequest.readyState === 4 && ajaxrequest.status === 200) {
         let respuesta = ajaxrequest.responseText
         if (respuesta === 'Registro borrado correctamente.') {
-          borrado=true
-          primerRegistro();
+          borrado = true
+          primerRegistro()
           mostrarVentanaEmergente(respuesta, 'success')
         } else {
           mostrarVentanaEmergente(respuesta, 'error')
@@ -195,10 +173,12 @@ function borrarRegistro() {
       'application/x-www-form-urlencoded',
     )
     //Envía la solicitud al servidor.
-    let envio = 'NIF=' + iNIF.value
+    let envio = 'Id=' + iId.value
     ajaxrequest.send(envio)
-    
-  }else{
-    mostrarVentanaEmergente("No hay un registro seleccionado para borrar.","info")
+  } else {
+    mostrarVentanaEmergente(
+      'No hay un registro seleccionado para borrar.',
+      'info',
+    )
   }
 }

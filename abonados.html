@@ -17,14 +17,14 @@
     <!--Script operaciones contra la base de datos-->
     <script src="./js/BD_Abonados.js" defer></script>
     <!--Script funciones-->
-    <script src="./js/Funciones.js" defer></script>
+    <script src="./js/funciones.js" defer></script>
     <!--Script objetos y eventos sobre el documento-->
     <script src="./js/abonados.js" defer></script>
 </head>
 
 <body>
     <header>
-        <img src="./images/AquaGest.png" alt="Logo AquaGest">
+        <img src="./images/AquaGest.jpg" alt="Logo AquaGest">
         <h1>Gestión Abonados</h1>
     </header>
 
@@ -54,13 +54,13 @@
                 </li>
                 <li>
                     <a
-                        href="http://www.informaticasc.com/curso22_23/Rodriguez/Dispositivos_IOT/pdf/ListadoAbonados.php">
+                        href="http://www.informaticasc.com/curso22_23/Rodriguez/Gestion_Aguas/pdf/ListadoAbonados.php">
                         <input type="button" id="bListado" value="Listado Abonados">
                     </a>
                 </li>
                 <li>
                     <a href="./index.html">
-                        <input type="button" class="btn" id="facturacion" value="Volver">
+                        <input type="button" class="btn" id="volver" value="Volver">
                     </a>
                 </li>
             </ul>
@@ -118,7 +118,7 @@
                                     <label for="iMail">E-mail</label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="text" class="campo" id="iMail" name="iMail" style="width:250px" placeholder="E-mail." value="">
+                                    <input type="email" class="campo" id="iMail" name="iMail" style="width:250px" placeholder="E-mail." value="">
                                 </div>
                             </div>
                             <div class="row">
@@ -126,7 +126,7 @@
                                     <label for="iTelefono">Teléfono</label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="text" class="campo" id="iTelefono" name="iTelefono" style="width:80px" placeholder="Teléfono." pattern="(+34|0034|34)?[ -]?(6|7|8|9)([0-9]){8}" value="">
+                                    <input type="text" class="campo" id="iTelefono" name="iTelefono" style="width:120px" placeholder="Teléfono." value="">
                                 </div>
                             </div>
                             <div class="row">

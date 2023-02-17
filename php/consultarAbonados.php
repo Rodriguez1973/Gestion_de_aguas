@@ -10,6 +10,8 @@ header('Access-Control-Allow-Headers: Content-Type');
 include('conexionBD.php');
 //Recibe el array con los datos JSON.
 $contenido=$_POST['Envio'];
+$contenido=str_replace("\\","",$contenido);
+
 //Si hay error en la conexión.
 if ($connect->connect_errno) {
     echo "Fallo al conectar a MySQL: (" . $connect->connect_errno . ") " . $connect->connect_error;
@@ -17,6 +19,7 @@ if ($connect->connect_errno) {
 } else{
     //Consulta a realizar a la base de datos.
     $sql = "SELECT * FROM abonados " . $contenido . " LIMIT 1;";
+
     //Realiza la consulta contra la base de datos.
     $resultado = mysqli_query($connect, $sql);
     //Busca el próximo registro de un conjunto de resultados como un array asociativo.

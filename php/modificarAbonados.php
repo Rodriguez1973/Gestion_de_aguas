@@ -26,14 +26,14 @@ if ($connect->connect_errno) {
 //Si no hay error en la conexión.
 } else{
     //Consulta de actualización en la base de datos.
-    $query = "UPDATE abonados SET  = '$tmpArray[1]', 
-    Nombre = '$tmpArray[2]', 
-    Apellido1 = '$tmpArray[3]', 
-    Apellido2 = '$tmpArray[4]', 
-    Direccion = '$tmpArray[5]',
-    Email = '$tmpArray[6]',
-    Telefono = '$tmpArray[7]',
-    Iban = '$tmpArray[8]'
+    $query = "UPDATE abonados SET
+    Nombre = '$tmpArray[1]', 
+    Apellido1 = '$tmpArray[2]', 
+    Apellido2 = '$tmpArray[3]', 
+    Direccion = '$tmpArray[4]',
+    Email = '$tmpArray[5]',
+    Telefono = '$tmpArray[6]',
+    Iban = '$tmpArray[7]'
     WHERE NIF = '$tmpArray[0]'";
 
     //Si la consulta se ha realizado correctamente.

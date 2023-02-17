@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Gestión Dispositivos</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/estilosDispositivos.css">
+    <link rel="icon" href="data:,"> <!--Elimina error favicon.ico-->
+    <!--Google Maps-->
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeNRBEIWYeWRRvY8On_9pkSD1_J_zLykQ&libraries=geometry"></script>
+    <!-- SweetAlert -->
+    <!--Plugin con el cual podremos dar un aspecto profesional a los mensajes que lancemos a los usuarios acorde a las tendencias actuales -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <!--Script operaciones Google Maps-->
+    <script src="./js/googleMaps.js" defer></script>
+    <!--Script operaciones contra la base de datos-->
+    <script src="./js/BD_Dispositivos.js" defer></script>
+    <!--Script funciones-->
+    <script src="./js/funciones.js" defer></script>
+    <!--Script objetos y eventos sobre el documento-->
+    <script src="./js/dispositivos.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <img src="./images/AquaGest.jpg" alt="Logo AquaGest">
+        <h1>Gestión Dispositivos</h1>
+    </header>
+
+    <main>
+        <div id="menu">
+            <ul>
+                <li>
+                    <input type="button" id="bGrabar" value="Nuevo registro">
+                </li>
+                <li>
+                    <input type="button" id="bModificar" value="Modificar registro">
+                </li>
+                <li>
+                    <input type="button" id="bBorrar" value="Borrar registro">
+                </li>
+                <li>
+                    <input type="button" id="bPrimero" value="Visualizar primero">
+                </li>
+                <li>
+                    <input type="button" id="bUltimo" value="Visualizar último">
+                </li>
+                <li>
+                    <input type="button" id="bSiguiente" value="Siguiente">
+                </li>
+                <li>
+                    <input type="button" id="bAnterior" value="Anterior">
+                </li>
+                <li>
+                    <a
+                        href="http://www.informaticasc.com/curso22_23/Rodriguez/Dispositivos_IOT/pdf/ListadoDispositivos.php">
+                        <input type="button" id="bListado" value="Listado Dispositivos">
+                    </a>
+                </li>
+                <li>
+                    <a href="./index.html">
+                        <input type="button" class="btn" id="volver" value="Volver">
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="principal">
+            <div id="datosDispositivo">
+                <h3>Datos dispositivo</h3>
+                <fieldset>
+                    <div class="container">
+                        <form name="form" id="form">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="iId">Id</label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="text" class="campo" id="iId" name="iId" style="width:95px" value="" 
+                                    placeholder="Identificador.">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="iNIF">NIF</label>
+                                </div>
+                                <div class="col-75">
+                                    <select id="iNIF">
+                                        <option class="campo" value="" disabled>Selecciona NIF.</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="iPuestaServicio">Puesta en servicio</label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="date" class="campo" id="iPuestaServicio" name="iPuestaServicio"
+                                        style="width:120px" value="" placeholder="Puesta en servicio.">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="iLatitud">Latitud</label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="text" class="campo" id="iLatitud" name="iLatitud" style="width:200px" value="" placeholder="Localización mapa." readonly>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="iLongitud">Longitud</label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="text" class="campo" id="iLongitud" name="iLongitud" style="width:200px"
+                                        placeholder="Localización mapa." value="" readonly>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="direccion">Dirección</label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="text" class="campo" id="iDireccion" name="iDireccion" style="width:600px" placeholder="Dirección." value="" readonly>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div id="cajamapa">
+                <h3>Mapa</h3>
+                <div class="map_canvas" id="map_canvas">
+                </div>
+                <div id="direccionMapa"></div>
+            </div>
+        </div>
+    </main>
+
+    <!--Pie de página-->
+    <footer id="pie">
+        <div>
+            <img src="./images/JARL_Logo.jpg" alt="JARL_Logo">
+            <div>
+                <p>Desarrollo de aplicaciones Web(DAW) &copy; CIFP Santa Catalina</p>
+                <p>Realizado por: José A. Rodríguez López.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

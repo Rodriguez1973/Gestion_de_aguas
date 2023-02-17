@@ -17,7 +17,7 @@ if ($connect->connect_errno) {
 //Si no hay error en la conexión.
 } else {
     //Consulta de actualización en la base de datos.
-    $query = "DELETE FROM abonados WHERE NIF =". $NIF;
+    $query = "DELETE FROM abonados WHERE NIF ='". $NIF."'";
 
     //Si la consulta se ha realizado correctamente.
 	if(mysqli_query($connect,$query)){

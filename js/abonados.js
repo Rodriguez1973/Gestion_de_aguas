@@ -7,6 +7,7 @@ let borrado = false //Flag que controla si se ha borrado un registro.
 let siguiente = false //Flag que controla si el flujo va al registro siguiente.
 let anterior = false //Flag que controla si el flujo va al registro anterior.
 let hayDatosBD = false //Flag que controla si se han leído datos en una consulta.
+let Id=null //Número de registro.
 
 //-------------------------------------------------------------------------------------------------
 //Referencias de los objetos del documento.
@@ -27,13 +28,14 @@ const iMail = document.getElementById('iMail')
 const iTelefono = document.getElementById('iTelefono')
 const iIban = document.getElementById('iIban')
 
+
 //--------------------------------------------------------------------------------------------------
 //Definición de eventos de los objetos.
 bGrabar.addEventListener('click', nuevoRegistro, false) //Evento click sobre el botón Grabar datos.
 bModificar.addEventListener(
   'click',
-  function () {
-    if (validarAbonado()) {
+  function (evt) {
+    if (validarAbonado(evt)) {
       grabarRegistro(false)
     }
   },
@@ -44,17 +46,25 @@ bPrimero.addEventListener('click', primerRegistro, false) //Evento click sobre e
 bUltimo.addEventListener('click', ultimoRegistro, false) //Evento click sobre el botón Visualizar último.
 bSiguiente.addEventListener('click', siguienteRegistro, false) //Evento click sobre el botón Siguiente registro.
 bAnterior.addEventListener('click', anteriorRegistro, false) //Evento click sobre el botón Anterior registro.
+iNIF.addEventListener('blur', validarAbonado, false) //Evento blur dobre el input iNIF.
+iNombre.addEventListener('blur', validarAbonado, false) //Evento blur dobre el input iNombre.
+iApellido1.addEventListener('blur', validarAbonado, false) //Evento blur sobre el input iApellido1.
+iApellido2.addEventListener('blur', validarAbonado, false) //Evento blur sobre el input iApellido2.
+iDireccion.addEventListener('blur', validarAbonado, false) //Evento blur sobre el input iDireccion.
+iMail.addEventListener('blur', validarAbonado, false) //Evento blur sobre el input iMail.
+iTelefono.addEventListener('blur', validarAbonado, false) //Evento blur sobre el input iTelefono.
+iIban.addEventListener('blur', validarAbonado, false) //Evento blur sobre el input iIban.
 
 //--------------------------------------------------------------------------------------------------
 //Crea un nuevo registro.
-function nuevoRegistro() {
+function nuevoRegistro(evt) {
   borrarMarcadores()
   if (!grabar) {
     limpiarCampos()
     cambiarGrabar()
   } else {
     //Grabando.
-    if (validarAbonado()) {
+    if (validarAbonado(evt)) {
       grabarRegistro(true)
       cambiarNuevo()
       grabar = false
@@ -69,7 +79,7 @@ function nuevoRegistro() {
 function primerRegistro() {
   borrarMarcadores()
   //Registros cuyo Id>=0 ordenados de forma ascendente.
-  let datosRequeridos = 'order by NIF ASC'
+  let datosRequeridos = 'order by NIF asc'
   solicitarRegistro(datosRequeridos)
   grabar = false
   habilitarBotones()
@@ -79,7 +89,7 @@ function primerRegistro() {
 //Visualiza el último registro de la base de datos.
 function ultimoRegistro() {
   //Registros cuyo Id>=0 ordenados de forma descendente.
-  let datosRequeridos = 'order by NIF DESC'
+  let datosRequeridos = 'order by NIF desc'
   solicitarRegistro(datosRequeridos)
   grabar = false
   habilitarBotones()
@@ -91,7 +101,7 @@ function siguienteRegistro() {
   if (iNIF.value != '') {
     siguiente = true
     //Registros cuyo Id>que el Id del registro actual ordenados de forma ascendente.
-    let datosRequeridos = 'where NIF>' + iNIF.value + ' order by NIF asc'
+    let datosRequeridos = 'where NIF>"' + iNIF.value + '" order by NIF asc'
     solicitarRegistro(datosRequeridos)
   } else {
     mostrarVentanaEmergente('No existe un registro siguiente.', 'info')
@@ -104,8 +114,8 @@ function siguienteRegistro() {
 function anteriorRegistro() {
   if (iNIF.value != '') {
     anterior = true
-    //Registros cuyo Id<que el Id del registro actual ordenados de forma descendente.
-    let datosRequeridos = 'where NIF<' + iNIF.value + ' order by NIF desc'
+    //Registros cuyo Id< que el Id del registro actual ordenados de forma descendente.
+    let datosRequeridos = 'where NIF<"' + iNIF.value + '" order by NIF desc'
     solicitarRegistro(datosRequeridos)
   } else {
     mostrarVentanaEmergente('No existe un registro anterior.', 'info')
@@ -175,7 +185,6 @@ function limpiarCampos() {
   iDireccion.value = ''
   iMail.value = ''
   iTelefono.value = ''
-  iDireccion.value = ''
   iIban.value = ''
   borrarMarcadores()
   //No hay registros en la BD y no está grabando.
@@ -187,16 +196,16 @@ function limpiarCampos() {
     iDireccion.disabled = true
     iMail.disabled = true
     iTelefono.disabled = true
-    iDireccion.disabled = true
     iIban.disabled = true
   } else {
+    iNIF.readOnly= false;
+    iNIF.disabled = false
     iNombre.disabled = false
     iApellido1.disabled = false
     iApellido2.disabled = false
     iDireccion.disabled = false
     iMail.disabled = false
     iTelefono.disabled = false
-    iDireccion.disabled = false
     iIban.disabled = false
   }
 }
@@ -253,6 +262,7 @@ function mostrarVentanaEmergente(mensaje, icono) {
 //--------------------------------------------------------------------------------------------------
 //Rellena los campos en la interfaz.
 function rellenarCampos(registro) {
+  iNIF.readOnly= true;
   iNIF.value = registro.NIF
   iNombre.value = registro.Nombre
   iApellido1.value = registro.Apellido1
