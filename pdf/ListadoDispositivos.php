@@ -35,14 +35,14 @@ class PDF extends FPDF
 	}
 }
 
-$w = array(40, 40, 40, 40, 40, 170, 50); //Ancho de las celdas de la tabla.
+$w = array(30, 30, 40, 40, 40, 180, 40); //Ancho de las celdas de la tabla.
 $alturafila = 8; //Altura de la fila.
 
 //Creación del objeto de la clase heredada
 $pdf = new PDF('L', 'mm', 'A3');
 $pdf->SetMargins(10, 15, 20);
 $pdf->AddPage();
-$pdf->SetFillColor(222, 222, 222);
+$pdf->SetFillColor(205, 247, 225);
 $pdf->Ln(5);
 $pdf->SetFont('Arial', 'B', 10);
 $pdf->SetDrawColor(0, 80, 180);
@@ -69,7 +69,7 @@ $pdf->SetLineWidth(0.2);
 function cabecera($pdf)
 {
 	$pdf->SetMargins(10, 15, 20);
-	$pdf->SetFillColor(222, 222, 222);
+	$pdf->SetFillColor(205, 247, 225);
 	$pdf->Ln(5);
 	$pdf->SetFont('Arial', 'B', 10);
 	$pdf->SetDrawColor(0, 80, 180);
@@ -77,7 +77,7 @@ function cabecera($pdf)
 	// Ancho del borde (0.3mm)
 	$pdf->SetLineWidth(0.3);
 	$alturafila = 8; //Altura de la fila.
-	$w = array(40, 40, 40, 40, 40, 170, 50); //Ancho de las celdas de la tabla.
+	$w = array(30, 30, 40, 40, 40, 180, 40); //Ancho de las celdas de la tabla.
 
 	$pdf->Cell($w[0], $alturafila, utf8_decode('ID Dispositivo'), 1, 0, 'C', True);
 	$pdf->Cell($w[1], $alturafila, utf8_decode('NIF Abonado'), 1, 0, 'C', True);
@@ -90,7 +90,7 @@ function cabecera($pdf)
 
 	$pdf->SetFont('Arial', '', 10);
 	$pdf->SetDrawColor(0, 80, 180);
-	$pdf->SetFillColor(157, 165, 243);
+	$pdf->SetFillColor(247, 226, 184);
 	$pdf->SetTextColor(0, 0, 0);
 	//Ancho del borde (0.2mm)
 	$pdf->SetLineWidth(0.2);
@@ -108,14 +108,14 @@ if ($connect->connect_errno) {
 	} else {
 		$pintaFondo = 'True';
 		$nlinea = 0;
-		$pdf->SetFillColor(157, 165, 243);
+		$pdf->SetFillColor(247, 226, 184);
 		while ($fila = mysqli_fetch_row($resultado)) {
 			$pdf->SetFont('Arial', 'B', 10);
 			$pdf->Cell($w[0], $alturafila, utf8_decode($fila[0]), 1, 0, 'L', $pintaFondo);
 			$pdf->Cell($w[1], $alturafila, utf8_decode($fila[1]), 1, 0, 'L', $pintaFondo);
-			$pdf->Cell($w[2], $alturafila, utf8_decode($fila[2]), 1, 0, 'C', $pintaFondo);
 			$pdf->SetFont('Arial', '', 10);
-			$pdf->Cell($w[3], $alturafila, utf8_decode($fila[3]), 1, 0, 'L', $pintaFondo);
+			$pdf->Cell($w[2], $alturafila, utf8_decode($fila[2]), 1, 0, 'L', $pintaFondo);
+     		$pdf->Cell($w[3], $alturafila, utf8_decode($fila[3]), 1, 0, 'L', $pintaFondo);
 			$pdf->Cell($w[4], $alturafila, utf8_decode($fila[4]), 1, 0, 'L', $pintaFondo);
 			$pdf->Cell($w[5], $alturafila, utf8_decode($fila[5]), 1, 0, 'L', $pintaFondo);
 			$pdf->Cell($w[6], $alturafila, utf8_decode($fila[6]), 1, 0, 'R', $pintaFondo);
@@ -137,7 +137,7 @@ if ($connect->connect_errno) {
 
 	mysqli_free_result($resultado);
 	$pdf->Ln();
-	$filename = "Caudalímetros_agua.pdf";
+	$filename = "Medidores de caudal.pdf";
 	$pdf->Output($filename, "D");
 }
 ?>

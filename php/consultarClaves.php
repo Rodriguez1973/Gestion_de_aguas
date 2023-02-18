@@ -8,8 +8,11 @@ Petición de registros a la base de datos.
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: Content-Type');
 include('conexionBD.php');
-//Recibe el array con los datos JSON.
-$condicion = $_POST['Envio'];
+//Recibe una cadena de texto array con los datos.
+$cadena = $_POST['Envio'];
+
+//Se decodifican los datos JSON.
+$parametros = explode("*%*",$cadena);
 
 //Si hay error en la conexión.
 if ($connect->connect_errno) {
@@ -17,7 +20,7 @@ if ($connect->connect_errno) {
     //Si no hay error en la conexión.
 } else {
     //Consulta a realizar a la base de datos.
-    $sql = "select " . $condicion . " from abonados;";
+    $sql = "select " . $parametros[0] . " from " .$parametros[1] . ";";
     //Realiza la consulta contra la base de datos.
     $resultado = mysqli_query($connect, $sql);
     //Busca el próximo registro de un conjunto de resultados como un array asociativo.

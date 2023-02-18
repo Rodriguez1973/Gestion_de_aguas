@@ -3,6 +3,9 @@ Proyecto realizado por: José A. Rodríguez López
 Fecha: 13/02/2023
 */
 
+let intervaloTiempo=10000 //Tiempo en milisegundos de la tarea programada. 5minuto.
+let tareaTemporizada //Tarea temporizada.
+
 //-------------------------------------------------------------------------------------------------
 //Capitalize.
 function capitalize(cadena) {
@@ -229,7 +232,6 @@ function validarDispositivo(evt) {
 
   //Valida la puesta en servicio.
   if ((evt.target.id === 'bGrabar' || evt.target.id === 'bModificar') && validado) {
-    console.log(iPuestaServicio.value)
     let patron = /^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$/
     var resultado = patron.test(iPuestaServicio.value.trim())
 
@@ -243,7 +245,11 @@ function validarDispositivo(evt) {
       if (fecha > fechaActual) {
         mensaje = 'La fecha no puede ser posterior a la actual.'
         validado = false
+      }else if(fecha<20200101){
+        mensaje = 'La fecha no puede ser anterior al 1 de enero del 2020.'
+        validado = false
       }
+
     }
   }
 
@@ -285,3 +291,27 @@ function añadirNIFs(datosLeidos) {
     }
   }
 }
+
+//--------------------------------------------------------------------------------------------------
+//Iniciar tarea temporizada.
+function iniciarTareaTemporizada(){
+  //Ejecuta la función repetidamente cada intervalo indicado en milisegundos.
+  tareaTemporizada = setInterval(() => {
+    leerDispositivos(); //Lee el ID de los dispositivos
+  }, intervaloTiempo)
+}
+
+//--------------------------------------------------------------------------------------------------
+//Función que genera los consumos aleatoriamente y los almacena en la base de datos.
+function generarConsumo(dispositivos){
+  if (dispositivos) {
+    for (let i = 0; i < dispositivos.length; i++) {
+      //console.log(dispositivos[i].Id+"--"+(parseFloat(dispositivos[i].Medida)+Math.random()*10/100))
+      actualizarConsumo(dispositivos[i].Id,(parseFloat(dispositivos[i].Medida)+Math.random()*10/100))
+    }
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+//Inicia la tarea temporizada de generar caudales.
+iniciarTareaTemporizada();

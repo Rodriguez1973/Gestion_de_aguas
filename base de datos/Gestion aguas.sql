@@ -24,7 +24,7 @@ create table if not exists dispositivos(
     Longitud varchar(20) not null,
     Direccion varchar (255) not null,
     Medida decimal(10,2) not null,
-    primary key (Id,NIF),
+    primary key (Id),
     constraint fk_nif foreign key (NIF) references abonados(NIF) on delete cascade on update cascade
 ) engine=innoDB default charset=utf8 collate=utf8_unicode_ci;
 
