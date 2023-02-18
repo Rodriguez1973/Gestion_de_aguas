@@ -247,15 +247,7 @@ function mostrarConsulta(datos) {
   }
 }
 
-//--------------------------------------------------------------------------------------------------
-//Muestra ventana emergente.
-function mostrarVentanaEmergente(mensaje, icono) {
-  Swal.fire({
-    icon: icono,
-    text: mensaje,
-    confirmButtonText: 'Aceptar',
-  })
-}
+
 
 //--------------------------------------------------------------------------------------------------
 //Rellena los campos en la interfaz.

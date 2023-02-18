@@ -10,7 +10,7 @@ function mostrarMapa() {
   mapa = new google.maps.Map(document.getElementById('map_canvas'), {
     // En el mapa se visualiza el mapa correspondiente a esta latitud, longitud
     center: new google.maps.LatLng(latitud, longitud), //El mapa se visualiza centrado en las coordenadas de latitud y longitud pasadas como argumento
-    zoom: 17, //Zoom del mapa
+    zoom: 14, //Zoom del mapa
     draggableCursor: 'auto', //El nombre o la URL del cursor que se muestra al desplazar el mouse sobre un mapa arrastrable.
     draggingCursor: 'crosshair', //El nombre o la URL del cursor que se muestra cuando se arrastra el mapa.
     mapTypeId: google.maps.MapTypeId.SATELLITE, //Tipo de mapa.
@@ -117,10 +117,10 @@ async function leerDispositivosMapa() {
     //alert(ajaxrequest.readyState + "--" + ajaxrequest.status);
     if (ajaxrequest.readyState === 4 && ajaxrequest.status === 200) {
       let datosLeidos = ajaxrequest.responseText
-      if (datosLeidos) {
+      if (datosLeidos!='null') {
         mostrarDispositivosMapa(JSON.parse(datosLeidos))
       } else {
-        mostrarVentanaEmergente('No existen dispositivos de alta en la base de datos.', 'info')
+        mostrarVentanaEmergente('No existen dispositivos dados de alta en la base de datos.', 'info')
       }
     }
   }

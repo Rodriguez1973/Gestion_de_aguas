@@ -288,3 +288,13 @@ function añadirNIFs(datosLeidos) {
     }
   }
 }
+
+//--------------------------------------------------------------------------------------------------
+//Muestra ventana emergente.
+function mostrarVentanaEmergente(mensaje, icono) {
+  Swal.fire({
+    icon: icono,
+    text: mensaje,
+    confirmButtonText: 'Aceptar',
+  })
+}
