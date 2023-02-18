@@ -38,7 +38,7 @@ h1 {
     font-size: 100px;
     text-align: center;
     margin: 20px auto 40px auto;
-    text-shadow: red 0 -2px;;
+    text-shadow: rgb(223, 19, 241) 0 -2px;;
 }
 
 header img{
@@ -159,7 +159,6 @@ footer {
     position: absolute;
     display: flex;
     justify-content: center;
-    bottom: 15px;
     font-weight: bold;
     width: 100%;
     z-index: 1;

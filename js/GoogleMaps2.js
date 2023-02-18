@@ -21,11 +21,20 @@ function mostrarMapa() {
 
 //------------------------------------------------------------------------------------------------
 //Referencia a un icono. Define sus propiedades.
-let icono = {
-  url: './images/Marcador_posicion.png', //Imagen del marcador de posición.
-  scaledSize: new google.maps.Size(50, 50), //Tamaño escala.
+let iconoIndividual = {
+  url: './images/DispositivoIndividual.png', //Imagen del marcador de posición.
+  scaledSize: new google.maps.Size(12, 12), //Tamaño escala.
   origin: new google.maps.Point(0, 0), //Origen imgen.
-  anchor: new google.maps.Point(25, 50), //Punto de anclaje
+  anchor: new google.maps.Point(6, 6), //Punto de anclaje
+}
+
+//------------------------------------------------------------------------------------------------
+//Referencia a un icono. Define sus propiedades.
+let iconoMaestro = {
+  url: './images/DispositivoIndividual.png', //Imagen del marcador de posición.
+  scaledSize: new google.maps.Size(12, 12), //Tamaño escala.
+  origin: new google.maps.Point(0, 0), //Origen imgen.
+  anchor: new google.maps.Point(6, 6), //Punto de anclaje
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -41,7 +50,7 @@ function añadirEventoClickMapa() {
     //Establece el marcador en el mapa.
     marker = new google.maps.Marker({
       position: event.latLng,
-      icon: icono,
+      icon: iconoIndividual,
       map: mapa,
       nombre: 'Localizador',
     })
@@ -105,26 +114,57 @@ function borrarMarcadores() {
 function añadirMarcador(registro) {
   borrarMarcadores()
   let marcador = new google.maps.Marker({
-    icon: icono,
-    position: new google.maps.LatLng(registro.latitud, registro.longitud),
+    icon: iconoIndividual,
+    position: new google.maps.LatLng(parseFloat(registro.Latitud), parseFloat(registro.Longitud)),
     map: mapa,
   })
-  mapa.setCenter(new google.maps.LatLng(registro.latitud, registro.longitud))
+  mapa.setCenter(new google.maps.LatLng(parseFloat(registro.Latitud), parseFloat(registro.Longitud)))
   mostrarDireccionDebajoMapa(registro.direccion)
   marcadores.push(marcador)
 }
 
 //--------------------------------------------------------------------------------------------------
+// Añadir un marcador de información al mapa.
+function añadirMarcadorInformacion(registro) {
+  let marcador = null
+
+  marcador = new google.maps.Marker({
+    icon: iconoIndividual,
+    position: new google.maps.LatLng(parseFloat(registro.Latitud), parseFloat(registro.Longitud)),
+    map: mapa,
+    hora: obtenerHoraActual(),
+    fecha: obtenerFechaActual(),
+    Id:registro.Id,
+    NIF:registro.NIF,
+    Puesta_servicio: registro.Puesta_servicio,
+    Direccion: registro.Direccion,
+    Medida: registro.Medida,
+  })
+
+  //Añade el evento click al marcador.
+  google.maps.event.addListener(
+    marcador,
+    'click',
+    function () {
+      mostrarInformacionMarcador(marcador)
+    },
+    false,
+  )
+  marcadores.push(marcador)
+}
+
+
+//--------------------------------------------------------------------------------------------------
 //Escribe la dirección en la parte inferior del mapa.
-function mostrarDireccionDebajoMapa(direccion){
-  direccionMapa.innerText=direccion
+function mostrarDireccionDebajoMapa(direccion) {
+  direccionMapa.innerText = direccion
 }
 
 //--------------------------------------------------------------------------------------------------
 //Calcular la distancia al punto de origen del mapa.
-let posicionOrigen=new google.maps.LatLng(latitud, longitud)
+let posicionOrigen = new google.maps.LatLng(latitud, longitud)
 
-function calcularDistancia2Puntos(posicionInicial, posicionFinal){
+function calcularDistancia2Puntos(posicionInicial, posicionFinal) {
   return distancia = google.maps.geometry.spherical.computeDistanceBetween(posicionInicial, posicionFinal)
 }
 

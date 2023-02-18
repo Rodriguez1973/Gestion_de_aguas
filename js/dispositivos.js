@@ -63,6 +63,12 @@ function nuevoRegistro(evt) {
         grabar = false
         hayDatosBD = true
         habilitarBotones()
+        marcador = new google.maps.Marker({
+          icon: iconoIndividual,
+          position: new google.maps.LatLng(iLatitud.value, iLongitud.value),
+          map: mapa,
+        })
+        marcadores.push(marcador)
       }
     }
   } else {
@@ -261,6 +267,9 @@ function rellenarCampos(registro) {
   iLongitud.value = registro.Longitud
   iDireccion.value = registro.Direccion
   iMedida.value = registro.Medida
+  let posicionMapa = new google.maps.LatLng(parseFloat(registro.Latitud), parseFloat(registro.Longitud))
+  mapa.setCenter(posicionMapa)
+  añadirMarcador(registro)
 }
 
 //--------------------------------------------------------------------------------------------------

@@ -7,8 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./css/estilosAbonados.css">
     <link rel="icon" href="data:,"> <!--Elimina error favicon.ico-->
-    <!--Script operaciones Google Maps-->
-    <script src="./js/GoogleMaps.js" defer></script>
     <!--Google Maps-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeNRBEIWYeWRRvY8On_9pkSD1_J_zLykQ&callback=Function.prototype&libraries=geometry"></script>
     <!-- SweetAlert -->
@@ -18,12 +16,12 @@
     <script src="./js/GoogleMaps1.js" defer></script>
     <!--Script operaciones contra la base de datos-->
     <script src="./js/BD_Abonados.js" defer></script>
-    <!--Script operaciones contra la base de datos-->
-    <script src="./js/BD_Dispositivos.js" defer></script>
     <!--Script funciones-->
-    <script src="./js/funciones.js" defer></script>
+    <script src="./js/Funciones.js" defer></script>
+    <!--Script operaciones de generación consumos-->
+    <script src="./js/Consumos.js" defer></script>
     <!--Script objetos y eventos sobre el documento-->
-    <script src="./js/abonados.js" defer></script>
+    <script src="./js/Abonados.js" defer></script>
 </head>
 
 <body>
@@ -36,19 +34,19 @@
         <div id="menu">
             <ul>
                 <li>
-                    <input type="button" id="bGrabar" value="Nuevo registro">
+                    <input type="button" id="bGrabar" value="Nuevo">
                 </li>
                 <li>
-                    <input type="button" id="bModificar" value="Modificar registro">
+                    <input type="button" id="bModificar" value="Modificar">
                 </li>
                 <li>
-                    <input type="button" id="bBorrar" value="Borrar registro">
+                    <input type="button" id="bBorrar" value="Borrar">
                 </li>
                 <li>
-                    <input type="button" id="bPrimero" value="Visualizar primero">
+                    <input type="button" id="bPrimero" value="Primer registro"> 
                 </li>
                 <li>
-                    <input type="button" id="bUltimo" value="Visualizar último">
+                    <input type="button" id="bUltimo" value="Último registro">
                 </li>
                 <li>
                     <input type="button" id="bSiguiente" value="Siguiente">
@@ -58,12 +56,12 @@
                 </li>
                 <li>
                     <a href="http://www.informaticasc.com/curso22_23/Rodriguez/Gestion_Aguas/pdf/ListadoAbonados.php">
-                        <input type="button" id="bListado" value="Listado Abonados">
+                        <input type="button" id="bListado" value="Listado">
                     </a>
                 </li>
                 <li>
                     <a href="./index.html">
-                        <input type="button" class="btn" id="volver" value="Volver">
+                        <input type="button" class="btn" id="inicio" value="Inicio">
                     </a>
                 </li>
             </ul>

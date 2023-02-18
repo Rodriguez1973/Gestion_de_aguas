@@ -2,32 +2,21 @@
 <html lang="es">
 
 <head>
-    <title>Gestión Dispositivos</title>
+    <title>Gestión Usuarios</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./css/estilosDispositivos.css">
+    <link rel="stylesheet" href="./css/estilosUsuarios.css">
     <link rel="icon" href="data:,"> <!--Elimina error favicon.ico-->
-    <!--Google Maps-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeNRBEIWYeWRRvY8On_9pkSD1_J_zLykQ&callback=Function.prototype&libraries=geometry"></script>
-    <!-- SweetAlert -->
-    <!--Plugin con el cual podremos dar un aspecto profesional a los mensajes que lancemos a los usuarios acorde a las tendencias actuales -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9" defer></script>
-    <!--Script operaciones Google Maps-->
-    <script src="./js/GoogleMaps2.js" defer></script>
-    <!--Script operaciones contra la base de datos-->
-    <script src="./js/BD_Dispositivos.js" defer></script>
-    <!--Script funciones-->
-    <script src="./js/Funciones.js" defer></script>
     <!--Script operaciones de generación consumos-->
     <script src="./js/Consumos.js" defer></script>
     <!--Script objetos y eventos sobre el documento-->
-    <script src="./js/Dispositivos.js" defer></script>
+    <script src="./js/Usuarios.js" defer></script>
 </head>
 
 <body>
     <header>
         <img src="./images/AquaGest.jpg" alt="Logo AquaGest">
-        <h1>Gestión Dispositivos</h1>
+        <h1>Gestión Usuarios</h1>
     </header>
 
     <main>
@@ -55,18 +44,6 @@
                     <input type="button" id="bAnterior" value="Anterior">
                 </li>
                 <li>
-                    <a
-                        href="http://www.informaticasc.com/curso22_23/Rodriguez/Gestion_Aguas/pdf/ListadoDispositivos.php">
-                        <input type="button" id="bListado" value="Listado">
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href="./mapaDispositivos.html">
-                        <input type="button" id="bMapa" value="Mapa Dispositivos">
-                    </a>
-                </li>
-                <li>
                     <a href="./index.html">
                         <input type="button" class="btn" id="inicio" value="Inicio">
                     </a>
@@ -75,7 +52,7 @@
         </div>
 
         <div id="principal">
-            <div id="datosDispositivo">
+            <div id="datosUsuario">
                 <h3>Datos dispositivo</h3>
                 <fieldset>
                     <div class="container">
@@ -147,13 +124,6 @@
                         </form>
                     </div>
                 </fieldset>
-            </div>
-
-            <div id="cajamapa">
-                <h3>Mapa</h3>
-                <div class="map_canvas" id="map_canvas">
-                </div>
-                <div id="direccionMapa"></div>
             </div>
         </div>
     </main>

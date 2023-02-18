@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Gestión Dispositivos</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/estilosMapaDispositivos.css">
+    <link rel="icon" href="data:,"> <!--Elimina error favicon.ico-->
+    <!--Google Maps-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeNRBEIWYeWRRvY8On_9pkSD1_J_zLykQ&callback=Function.prototype&libraries=geometry"></script>
+    <!-- SweetAlert -->
+    <!--Plugin con el cual podremos dar un aspecto profesional a los mensajes que lancemos a los usuarios acorde a las tendencias actuales -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9" defer></script>
+     <!--Script funciones-->
+    <script src="./js/Funciones.js" defer></script>
+    <!--Script operaciones de generación consumos-->
+    <script src="./js/Consumos.js" defer></script>
+    <!--Script operaciones Google Maps-->
+    <script src="./js/GoogleMaps3.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <img src="./images/AquaGest.jpg" alt="Logo AquaGest">
+        <h1>Mapa Dispositivos</h1>
+    </header>
+
+    <main>
+        <div id="menu">
+            <ul>
+                <li>
+                    <a href="./dispositivos.html">
+                        <input type="button" class="btn" id="volver" value="Volver">
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="principal">
+            <div id="cajamapa">
+                <h3>Mapa Dispositivos</h3>
+                <div class="map_canvas" id="map_canvas">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!--Pie de página-->
+    <footer id="pie">
+        <div>
+            <img src="./images/JARL_Logo.jpg" alt="JARL_Logo">
+            <div>
+                <p>Desarrollo de aplicaciones Web(DAW) &copy; CIFP Santa Catalina</p>
+                <p>Realizado por: José A. Rodríguez López.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

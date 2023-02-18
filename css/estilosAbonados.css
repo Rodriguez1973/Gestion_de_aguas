@@ -119,7 +119,7 @@ h3 {
   box-sizing: border-box;
   background: rgb(8, 45, 82);
   color: white;
-  padding-left: 10%;
+  padding-left: 50px;
 }
 
 fieldset {
@@ -221,7 +221,6 @@ footer {
   position: absolute;
   display: flex;
   justify-content: center;
-  bottom: 15px;
   font-weight: bold;
   width: 100%;
   z-index: 1;

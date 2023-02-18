@@ -7,11 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de aguas</title>
     <link rel="stylesheet" href="./css/estilosIndex.css" />
-    <!--Script operaciones contra la base de datos-->
-    <script src="./js/BD_Dispositivos.js" defer></script>
-    <!--Script funciones-->
-    <script src="./js/funciones.js" defer>
-    </script>
+    <!--Script operaciones de generación consumos-->
+    <script src="./js/Consumos.js" defer></script>
 </head>
 
 <body>
@@ -23,6 +20,11 @@
     <div id="menu">
         <ul id="menuNavegacion">
             <li>
+                <a href="./usuarios.html">
+                    <input type="button" class="btn" id="usuarios" value="Gestión Usuarios">
+                </a>
+            </li>
+            <li>
                 <a href="./abonados.html">
                     <input type="button" class="btn" id="abonados" value="Gestión Abonados">
                 </a>
@@ -30,11 +32,6 @@
             <li>
                 <a href="./dispositivos.html">
                     <input type="button" class="btn" id="dispositivos" value="Gestión Dispositivos">
-                </a>
-            </li>
-            <li>
-                <a href="./facturacion.html">
-                    <input type="button" class="btn" id="facturacion" value="Facturación">
                 </a>
             </li>
         </ul>

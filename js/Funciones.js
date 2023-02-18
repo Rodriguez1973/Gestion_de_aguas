@@ -3,9 +3,6 @@ Proyecto realizado por: José A. Rodríguez López
 Fecha: 13/02/2023
 */
 
-let intervaloTiempo=10000 //Tiempo en milisegundos de la tarea programada. 5minuto.
-let tareaTemporizada //Tarea temporizada.
-
 //-------------------------------------------------------------------------------------------------
 //Capitalize.
 function capitalize(cadena) {
@@ -291,27 +288,3 @@ function añadirNIFs(datosLeidos) {
     }
   }
 }
-
-//--------------------------------------------------------------------------------------------------
-//Iniciar tarea temporizada.
-function iniciarTareaTemporizada(){
-  //Ejecuta la función repetidamente cada intervalo indicado en milisegundos.
-  tareaTemporizada = setInterval(() => {
-    leerDispositivos(); //Lee el ID de los dispositivos
-  }, intervaloTiempo)
-}
-
-//--------------------------------------------------------------------------------------------------
-//Función que genera los consumos aleatoriamente y los almacena en la base de datos.
-function generarConsumo(dispositivos){
-  if (dispositivos) {
-    for (let i = 0; i < dispositivos.length; i++) {
-      //console.log(dispositivos[i].Id+"--"+(parseFloat(dispositivos[i].Medida)+Math.random()*10/100))
-      actualizarConsumo(dispositivos[i].Id,(parseFloat(dispositivos[i].Medida)+Math.random()*10/100))
-    }
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-//Inicia la tarea temporizada de generar caudales.
-iniciarTareaTemporizada();

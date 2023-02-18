@@ -114,8 +114,8 @@ if ($connect->connect_errno) {
 			$pdf->Cell($w[0], $alturafila, utf8_decode($fila[0]), 1, 0, 'L', $pintaFondo);
 			$pdf->Cell($w[1], $alturafila, utf8_decode($fila[1]), 1, 0, 'L', $pintaFondo);
 			$pdf->Cell($w[2], $alturafila, utf8_decode($fila[2]), 1, 0, 'L', $pintaFondo);
-			$pdf->SetFont('Arial', '', 10);
 			$pdf->Cell($w[3], $alturafila, utf8_decode($fila[3]), 1, 0, 'L', $pintaFondo);
+			$pdf->SetFont('Arial', '', 10);
 			$pdf->Cell($w[4], $alturafila, utf8_decode($fila[5]), 1, 0, 'L', $pintaFondo);
 			$pdf->Cell($w[5], $alturafila, utf8_decode($fila[4]), 1, 0, 'L', $pintaFondo);
 			$pdf->Cell($w[6], $alturafila, utf8_decode($fila[6]), 1, 0, 'L', $pintaFondo);
