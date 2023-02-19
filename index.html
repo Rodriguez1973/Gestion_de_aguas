@@ -7,8 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de aguas</title>
     <link rel="stylesheet" href="./css/estilosIndex.css" />
+    <!-- SweetAlert -->
+    <!--Plugin con el cual podremos dar un aspecto profesional a los mensajes que lancemos a los usuarios acorde a las tendencias actuales -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9" defer></script>
+    <!--Pluguin ajax-->
+    <script src="ajax.js"></script>
+    <!--Script funciones-->
+    <script src="./js/Funciones.js" defer></script>
     <!--Script operaciones de generación consumos-->
     <script src="./js/Consumos.js" defer></script>
+    <!--Script operaciones de facturación-->
+    <script src="./js/Facturacion.js" defer></script>
 </head>
 
 <body>
@@ -19,11 +28,6 @@
 
     <div id="menu">
         <ul id="menuNavegacion">
-            <li>
-                <a href="./usuarios.html">
-                    <input type="button" class="btn" id="usuarios" value="Gestión Usuarios">
-                </a>
-            </li>
             <li>
                 <a href="./abonados.html">
                     <input type="button" class="btn" id="abonados" value="Gestión Abonados">
@@ -46,6 +50,12 @@
             </div>
         </div>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <br>
     <br>
     <div id="icon_gota">

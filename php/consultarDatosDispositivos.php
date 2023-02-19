@@ -17,7 +17,7 @@ if ($connect->connect_errno) {
 //Si no hay error en la conexión.
 } else{
     //Consulta a realizar a la base de datos.
-    $sql = "SELECT * FROM dispositivos;";
+    $sql = "SELECT * FROM dispositivos order by Id;";
 
     //Realiza la consulta contra la base de datos.
     $resultado = mysqli_query($connect, $sql);

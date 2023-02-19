@@ -216,7 +216,7 @@ async function leerNIFs() {
       if (datosLeidos) {
         //console.log(datosLeidos)
         NIFs = JSON.parse(datosLeidos)
-        añadirNIFs(JSON.parse(datosLeidos))
+        añadirNIFs(NIFs)
       } else {
         NIFs = null
         //alert('No hay registros que cumplan la condición')

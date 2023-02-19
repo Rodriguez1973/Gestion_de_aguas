@@ -19,7 +19,7 @@ create table if not exists abonados(
 create table if not exists dispositivos(
     Id int auto_increment, 
     NIF varchar(9), 
-    Puesta_servicio date,
+    Puesta_servicio date not null,
     Latitud varchar(20) not null,
     Longitud varchar(20) not null,
     Direccion varchar (255) not null,
@@ -28,11 +28,12 @@ create table if not exists dispositivos(
     constraint fk_nif foreign key (NIF) references abonados(NIF) on delete cascade on update cascade
 ) engine=innoDB default charset=utf8 collate=utf8_unicode_ci;
 
--- Tabla facturacion.
-create table if not exists facturacion(
-    Id int,
-    Num_medicion int not null,
-    Medida real(20,2) not null,
-    primary key (id, Num_medicion),
-    constraint fk_id foreign key (Id) references dispositivos(Id) on delete cascade on update cascade
+-- Tabla consumos.
+create table if not exists consumos(
+    IdDispositivo int,
+    Fecha_medida date,
+    Medida decimal(10,2) not null,
+    Precio decimal(6,2) not null,
+    primary key (IdDispositivo, Fecha_Medida),
+    constraint fk_id_dispositivo foreign key (IdDispositivo) references dispositivos(Id) on delete cascade on update cascade
 ) engine=innoDB default charset=utf8 collate=utf8_unicode_ci;

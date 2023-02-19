@@ -87,12 +87,14 @@ header img{
 #cont_olas{
     width: 100%;
     position:absolute;
+    top:170px;
     left: 0;
     height: 455px;
 }
 
 #icon_gota{
     text-align: center;
+    z-index: 1;
 }
 
 #contenedor_olas {

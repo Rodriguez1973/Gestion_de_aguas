@@ -45,7 +45,7 @@ function obtenerHoraActual() {
 }
 
 //-------------------------------------------------------------------------------------------------
-//Validar NIF.
+//Validar letra del NIF.
 function validarNIF(NIF) {
   let letrasNIF = [
     'T',
@@ -238,11 +238,11 @@ function validarDispositivo(evt) {
     } else {
       //Procesa fecha para comprobar que es menor o igual a la actual.
       let fecha = iPuestaServicio.value.replaceAll('-', '')
-      let fechaActual=obtenerFechaActual().replaceAll('-', '')
+      let fechaActual = obtenerFechaActual().replaceAll('-', '')
       if (fecha > fechaActual) {
         mensaje = 'La fecha no puede ser posterior a la actual.'
         validado = false
-      }else if(fecha<20200101){
+      } else if (fecha < 20200101) {
         mensaje = 'La fecha no puede ser anterior al 1 de enero del 2020.'
         validado = false
       }
@@ -260,10 +260,10 @@ function validarDispositivo(evt) {
 
   //Valida la medida del dispositivo.
   if ((evt.target.id === 'bGrabar' || evt.target.id === 'bModificar') && validado) {
-    if (!iMedida.value){
+    if (!iMedida.value) {
       mensaje = 'No se ha introducidos la medida del dispositivo.'
       validado = false
-    }else if(iMedida.value < 0 ) {
+    } else if (iMedida.value < 0) {
       mensaje = 'La medida del dispositivo no puede ser negativa.'
       validado = false
     }
@@ -297,4 +297,30 @@ function mostrarVentanaEmergente(mensaje, icono) {
     text: mensaje,
     confirmButtonText: 'Aceptar',
   })
+}
+
+//--------------------------------------------------------------------------------------------------
+//Función que envia un email
+function enviarEmail(datosCorreo) {
+
+  //Proporciona una forma fácil de obtener información de una URL sin tener que recargar la página completa. XMLHttpRequest es ampliamente usado en la programación AJAX.
+  //A pesar de su nombre, XMLHttpRequest puede ser usado para recibir cualquier tipo de dato, no solo XML, y admite otros formatos además de HTTP (incluyendo file y ftp).
+  let ajaxrequest = new XMLHttpRequest()
+
+  //Inicializa una solicitud recién creada o reinicializa una existente.
+  ajaxrequest.open("POST", "https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_Aguas/php/envio_email.php", true);
+
+  //Cambio de estado a listo,
+  ajaxrequest.onreadystatechange = function () {
+    if (ajaxrequest.readyState == 4) {
+      respuesta = ajaxrequest.responseText
+      console.log(respuesta)
+    }
+  }
+
+  ajaxrequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  
+  //Envía la solicitud al servidor.
+  let envio = "Envio="+datosCorreo
+  ajaxrequest.send(envio)
 }
