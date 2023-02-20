@@ -6,6 +6,9 @@
 
 require('PHPMailer.php');
 
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: Content-Type');
+
 //Recibe el array con los datos JSON.
 $contenido = $_POST['Envio'];
 //Acondicionamiento de la cadena para ser tratada.
