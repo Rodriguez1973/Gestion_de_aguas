@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./css/estilosMapaDispositivos.css">
     <link rel="icon" href="data:,"> <!--Elimina error favicon.ico-->
+    <!--Script objetos y eventos sobre el documento-->
     <!--Google Maps-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeNRBEIWYeWRRvY8On_9pkSD1_J_zLykQ&callback=Function.prototype&libraries=geometry"></script>
     <!-- SweetAlert -->
@@ -18,6 +19,8 @@
     <script src="./js/Consumos.js" defer></script>
     <!--Script operaciones de facturación-->
     <script src="./js/Facturacion.js" defer></script>
+    <!--Script operaciones de generación fechas-->
+    <script src="./js/GeneradorFechas.js" defer></script>
     <!--Script operaciones Google Maps-->
     <script src="./js/GoogleMaps3.js" defer></script>
 </head>
@@ -26,6 +29,7 @@
     <header>
         <img src="./images/AquaGest.jpg" alt="Logo AquaGest">
         <h1>Mapa Dispositivos</h1>
+        <p id="fecha"></p>
     </header>
 
     <main>

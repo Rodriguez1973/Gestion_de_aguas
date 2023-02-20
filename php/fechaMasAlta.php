@@ -11,16 +11,13 @@ include('conexionBD.php');
 //Recibe una cadena de texto array con los datos.
 $cadena = $_POST['Envio'];
 
-//Se decodifican los datos JSON.
-$parametros = explode("*%*",$cadena);
-
 //Si hay error en la conexión.
 if ($connect->connect_errno) {
     echo "Fallo al conectar a MySQL: (" . $connect->connect_errno . ") " . $connect->connect_error;
     //Si no hay error en la conexión.
 } else {
     //Consulta a realizar a la base de datos.
-    $sql = "select " . $parametros[0] . " from " .$parametros[1] . ";";
+    $sql = "select max(Fecha_medida) MaxFecha from consumos;";
     //Realiza la consulta contra la base de datos.
     $resultado = mysqli_query($connect, $sql);
     //Busca el próximo registro de un conjunto de resultados como un array asociativo.

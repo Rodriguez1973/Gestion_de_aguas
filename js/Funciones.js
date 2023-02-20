@@ -100,7 +100,7 @@ function validarAbonado(evt) {
     let NIF = iNIF.value.trim().toUpperCase()
     let resultado = patron.test(NIF)
     if (!resultado || !validarNIF(NIF)) {
-      mensaje = 'NIF no válido.'
+      mensaje = 'NIF no válido. 8 cifras y 1 letra. Valida la letra del NIF.'
       validado = false
     }
   }
@@ -112,7 +112,7 @@ function validarAbonado(evt) {
       evt.target.id === 'bModificar') &&
     validado
   ) {
-    let patron = /^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]+(\s([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]+))?$/
+    let patron = /^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]+(\s([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]+))?$/ 
     let resultado = patron.test(iNombre.value.trim())
     if (!resultado) {
       mensaje =
@@ -128,7 +128,7 @@ function validarAbonado(evt) {
       evt.target.id === 'bModificar') &&
     validado
   ) {
-    let patron = /^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]+$/
+    let patron = /^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]+$/ //Caracteres váilidos en apellido1.
     let resultado = patron.test(iApellido1.value.trim())
     if (!resultado) {
       mensaje =
@@ -144,7 +144,7 @@ function validarAbonado(evt) {
       evt.target.id === 'bModificar') &&
     validado
   ) {
-    let patron = /^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]+$/
+    let patron = /^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]+$/ //Caracteres váilidos en apellido2.
     let resultado = patron.test(iApellido2.value.trim())
     if (!resultado) {
       mensaje =
@@ -161,7 +161,7 @@ function validarAbonado(evt) {
     validado
   ) {
     let resultado = iDireccion.value.trim()
-    if (resultado === '') {
+    if (resultado === '') { //La dirección no puede estar vacía.
       mensaje = 'La dirección no puede estar vacía.'
       validado = false
     }
@@ -189,10 +189,10 @@ function validarAbonado(evt) {
       evt.target.id === 'bModificar') &&
     validado
   ) {
-    let patron = /^(\+34|0034|34)?[6789]\d{8}$/
+    let patron = /^(\+34|0034|34)?[6789]\d{8}$/ //Pueden llevar el prefijo de España y empiezan por 6, 7, 8 o 9 mas 8 cifras.
     let resultado = patron.test(iTelefono.value.trim())
     if (!resultado) {
-      mensaje = 'El teléfono introducido no es válido.'
+      mensaje = 'El teléfono introducido no es válido. Pueden llevar el prefijo de España y empiezan por 6, 7, 8 o 9 mas 8 cifras.'
       validado = false
     }
   }
@@ -204,10 +204,10 @@ function validarAbonado(evt) {
       evt.target.id === 'bModificar') &&
     validado
   ) {
-    let patron = /^[a-zA-Z]{2}(\d{22})$/
+    let patron = /^[a-zA-Z]{2}(\d{22})$/ //2 letras y 22 dígitos.
     let resultado = patron.test(iIban.value.trim().toUpperCase())
     if (!resultado) {
-      mensaje = 'El IBAN no es válido.'
+      mensaje = 'El IBAN no es válido. 2 letras del código de pais y 22 cifras.'
       validado = false
     }
   }
@@ -332,5 +332,3 @@ function enviarEmail(datosCorreo) {
   let envio = "Envio="+datosCorreo
   ajaxrequest.send(envio)
 }
-
-//enviarEmail({"NIF":"11828614J","Nombre":"José Antonio Rodríguez López","Email":"j062667@gmail.com","Direccion":"C. Valladolid, 14, 09400 Aranda de Duero, Burgos, España","Fecha":"20-02-2023","Importe":"147.98"})

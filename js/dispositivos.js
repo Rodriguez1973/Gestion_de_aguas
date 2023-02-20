@@ -227,6 +227,7 @@ function mostrarConsulta(datos) {
         anterior = false
       } else if (!hayDatosBD) {
         limpiarCampos()
+        finalizarTareaPeriodica(tareaGeneracionConsumo) //Suspende la generacion de consumos durante el borrado.
         hayDatosBD = false
         mostrarVentanaEmergente(
           'No existen registros en la base de datos.',
@@ -236,6 +237,7 @@ function mostrarConsulta(datos) {
     } else {
       if (lista == null) {
         limpiarCampos()
+        finalizarTareaPeriodica(tareaGeneracionConsumo) //Suspende la generacion de consumos durante el borrado.
         hayDatosBD = false
         mostrarVentanaEmergente(
           'No existen registros en la base de datos.',

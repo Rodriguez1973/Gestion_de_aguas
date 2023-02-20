@@ -41,6 +41,7 @@ async function solicitarRegistro(datosRequeridos) {
 //--------------------------------------------------------------------------------------------------
 //Función que graba o modifica un registro en la base de datos.
 function grabarRegistro(nuevoRegistro) {
+  finalizarTareaPeriodica(tareaGeneradorFechas) //Suapende la generación de fechas para la simulación.
   finalizarTareaPeriodica(tareaGeneracionConsumo) //Suspende la generacion de consumos durante el grabado.
   let dispositivo =
     '{"' +
@@ -147,11 +148,13 @@ function grabarRegistro(nuevoRegistro) {
     )
   }
   inicioGeneracionConsumos()  //Inicia la generación de consumos al finalizar la grabación.
+  inicioGeneradorFechas() //Inicia el generador de fechas para simulación.
 }
 
 //--------------------------------------------------------------------------------------------------
 //Función que graba o modifica un registro en la base de datos.
 function borrarRegistro() {
+  finalizarTareaPeriodica(tareaGeneradorFechas) //Suapende la generación de fechas para la simulación.
   finalizarTareaPeriodica(tareaGeneracionConsumo) //Suspende la generacion de consumos durante el borrado.
   if (iId.value != '') {
     //Proporciona una forma fácil de obtener información de una URL sin tener que recargar la página completa. XMLHttpRequest es ampliamente usado en la programación AJAX.
@@ -192,7 +195,8 @@ function borrarRegistro() {
       'info',
     )
   }
-  inicioGeneracionConsumos()  //Inicia la generación de consumos al finalizar el borrado.
+  inicioGeneracionConsumos() //Inicia la generación de consumos al finalizar el borrado.
+  inicioGeneradorFechas() //Inicia el generador de fechas para simulación.
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -231,4 +235,3 @@ async function leerNIFs() {
   )
   ajaxrequest.send(envio)
 }
-

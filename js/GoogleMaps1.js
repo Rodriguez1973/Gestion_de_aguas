@@ -116,7 +116,9 @@ function añadirMarcador(registro) {
 //--------------------------------------------------------------------------------------------------
 //Escribe la dirección en la parte inferior del mapa.
 function mostrarDireccionDebajoMapa(direccion){
-  direccionMapa.innerText=direccion
+  if(direccion!=undefined){
+    direccionMapa.innerText=direccion
+  }
 }
 
 //--------------------------------------------------------------------------------------------------

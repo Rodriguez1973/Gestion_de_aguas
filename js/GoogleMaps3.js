@@ -82,10 +82,10 @@ function mostrarInformacionMarcador(marcador) {
       marcador.NIF +
       '</p>' +
       '<p style="text-align:justify"><b>Puesta en servicio: </b>' +
-      marcador.Puesta_servicio +
+      cambiarFormatoFecha(marcador.Puesta_servicio) +
       '<p>' +
       '<p style="text-align:justify"><b>Toma muestra: </b>' +
-      marcador.fecha + " " + marcador.hora +
+      cambiarFormatoFecha(marcador.fecha) + " " + marcador.hora +
       '</p>' +
       '<p style="text-align:justify"><b>Dirección: </b>' +
       marcador.Direccion +

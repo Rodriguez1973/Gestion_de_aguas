@@ -33,7 +33,7 @@ try {
     $mail->Subject = utf8_decode($tmpArray[0]);
     $mail->Body    = utf8_decode("<p><b>Fecha: </b>$tmpArray[5]</p><p><b>Dirección: </b>$tmpArray[4]</p>".
     "<p><b>Hola $tmpArray[2]:</b></p><p>En los próximos días, procederemos a domiciliar el recibo en su cuenta
-    del servicio prestado, por un importe de $tmpArray[6]&euro;.</p><p>Los servicios municipales de aguas le 
+    por el servicio prestado con un importe de $tmpArray[6]&euro;.</p><p>Los servicios municipales de aguas le 
     saludan atentamente.</p>");
     
     //Attachments

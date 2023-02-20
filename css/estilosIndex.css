@@ -33,6 +33,15 @@ header{
     min-width: 1150px;
 }
 
+header p{
+    margin-right: 15px;
+    text-align: center;
+    font-size: 17px;
+    color:white;
+    font-weight: bold;
+    width:200px;
+  }
+
 h1 {
     font-family: 'TTNorms-Black';
     font-size: 100px;

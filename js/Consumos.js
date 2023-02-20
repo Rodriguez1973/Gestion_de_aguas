@@ -30,6 +30,7 @@ function generarConsumo(dispositivos) {
 //Finalizar tarea periódica.
 function finalizarTareaPeriodica(tarea) {
     clearInterval(tarea)
+    iniciadoGeneradorFechas=false;
 }
 
 //--------------------------------------------------------------------------------------------------

@@ -5,9 +5,9 @@ Fecha: 18/02/2023
 
 const PRECIO_METRO_CUBICO = 3.5 //Constante que define el importe facturado por cada metro cubico de agua.
 let facturado = false //Flag que indica si se ha producido la facturación.
-let tiempoFacturacion = 10000 //Tiempo en milisegundos de la tarea proramada facturarConsumo. 20 minutos.
+let tiempoFacturacion = 5000 //Tiempo en milisegundos de la tarea programada facturarConsumo. 20 minutos.
 let tareaFacturacion //Tarea temporizada que genera la facturación.
-let arrayIdDispositivos = null  //Array de dispositivos.
+
 
 //--------------------------------------------------------------------------------------------------
 //Inicia la tarea periodica que recopila las medidas para la facturación.
@@ -58,11 +58,16 @@ function facturacion(dispositivos) {
     //Si hay dispositivos y no ha sido ya facturado el consumo.
     if (dispositivos && !facturado) {
         arrayIdDispositivos = []
-        for (let i = 0; i < dispositivos.length; i++) {
-            grabarMedidas(dispositivos[i].Id, obtenerFechaActual(), dispositivos[i].Medida, PRECIO_METRO_CUBICO)
-            arrayIdDispositivos.push(dispositivos[i].id)
+        if ((window.sessionStorage.getItem("dia") == 30 && (window.sessionStorage.getItem("mes") == 3 || window.sessionStorage.getItem("mes")== 6 || 
+        window.sessionStorage.getItem("mes") == 9 || window.sessionStorage.getItem("mes")== 12)) && !facturado) {
+            for (let i = 0; i < dispositivos.length; i++) {
+                grabarMedidas(dispositivos[i].Id, obtenerFecha(window.sessionStorage.getItem("dia"), window.sessionStorage.getItem("mes"), 
+                window.sessionStorage.getItem("anio")), dispositivos[i].Medida, PRECIO_METRO_CUBICO)
+            }
+            facturado = true;
+        } else {
+            facturado = false
         }
-        facturado = true;
     }
 }
 
@@ -241,6 +246,6 @@ function procesaCorreo(datosLeidos) {
     enviarEmail(datosCorreo)
 }
 
-//--------------------------------------------------------------------------------------------------
-//Inicia la tarea temporizada de facturación.
+//-------------------------------------------------------------------------------------------------
+//Inicio de la facturación.
 inicioFacturacionMedidas()
