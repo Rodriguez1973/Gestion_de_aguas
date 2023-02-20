@@ -1,12 +1,10 @@
-
 <?php
 
 //CLAVEDOSPASOS  la obtenida configurando GMAIL en el tutorial  https://www.espai.es/blog/2022/06/phpmailer-ya-no-envia-correos-a-traves-de-gmail/
 //(Activar la verificación en dos pasos)
-require('PHPMailer.php');
 
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Headers: Content-Type');
+
+require('PHPMailer.php');
 
 //Recibe el array con los datos JSON.
 $contenido = $_POST['Envio'];
@@ -23,23 +21,26 @@ foreach ($array as $dato) {
 
 $mail = new PHPMailer();
 try {
-    //Direcciones de envio y recepción.
-    $mail->setFrom('s022045b_rodriguez@informaticasc.com');
-    $mail->addAddress($tmpArray[2]);     //Añade un destinatario
-    $mail->addReplyTo('s022045b_rodriguez@informaticasc.com');
+
+    //Destinatario
+    $mail->setFrom('gestionaguasaranda@gmail.com','SERVICIO_AGUAS');
+    $mail->addAddress($tmpArray[3]);     //Añade un destinatario
+    $mail->addReplyTo('gestionaguasaranda@gmail.com');
 
 
-    //Contenido
+    //Content
     $mail->isHTML(true);                                 
-    $mail->Subject = "Información del contrato del suministro de aguas";
-    $mail->Body    = "<p><b>Fecha: </b>$tmpArray[4]</p><p><b>Dirección: </b>.$tmpArray[3]</p>".
-    "<p><b>Hola $tmpArray[1]:</p><p>En los próximos días, procederemos a domiciliar el recibo en su cuenta
-    por el servicio prestado, por un importe de $tmpArray[5]€.</p><p>Los servicios municipales de aguas le 
-    saludan atentamente.</p>";
+    $mail->Subject = utf8_decode($tmpArray[0]);
+    $mail->Body    = utf8_decode("<p><b>Fecha: </b>$tmpArray[5]</p><p><b>Dirección: </b>$tmpArray[4]</p>".
+    "<p><b>Hola $tmpArray[2]:</b></p><p>En los próximos días, procederemos a domiciliar el recibo en su cuenta
+    del servicio prestado, por un importe de $tmpArray[6]&euro;.</p><p>Los servicios municipales de aguas le 
+    saludan atentamente.</p>");
     
-    //$mail->AddAttachment("ficheroAEnviar.pdf"); //Opcional
+    //Attachments
+    $mail->AddAttachment("ficheroAEnviar.pdf"); //Opcional
 
     $mail->send();
+    echo "El correo con la factura se envio correctamente";
 } catch (Exception $e) {
     echo "Error en el envío. Mailer Error: {$mail->ErrorInfo}";
 }

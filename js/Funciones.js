@@ -32,6 +32,12 @@ function obtenerFechaActual() {
 }
 
 //-------------------------------------------------------------------------------------------------
+//Cambia el formato de la fecha.
+function cambiarFormatoFecha(fecha){
+  return fecha.substring(8)+"-"+fecha.substring(5,7)+"-"+fecha.substring(0,4)
+}
+
+//-------------------------------------------------------------------------------------------------
 //Obtiene la fecha actual.
 function obtenerHoraActual() {
   let fecha = new Date() //Fecha actual.
@@ -308,13 +314,15 @@ function enviarEmail(datosCorreo) {
   let ajaxrequest = new XMLHttpRequest()
 
   //Inicializa una solicitud recién creada o reinicializa una existente.
-  ajaxrequest.open("POST", "https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_Aguas/php/envio_email.php", true);
+  ajaxrequest.open("POST", "https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_de_aguas/php/envio_email.php", true);
 
   //Cambio de estado a listo,
   ajaxrequest.onreadystatechange = function () {
     if (ajaxrequest.readyState == 4) {
       respuesta = ajaxrequest.responseText
-      console.log(respuesta)
+      if(respuesta!=""){
+        mostrarVentanaEmergente(respuesta,"error")
+      }
     }
   }
 
@@ -324,3 +332,5 @@ function enviarEmail(datosCorreo) {
   let envio = "Envio="+datosCorreo
   ajaxrequest.send(envio)
 }
+
+//enviarEmail({"NIF":"11828614J","Nombre":"José Antonio Rodríguez López","Email":"j062667@gmail.com","Direccion":"C. Valladolid, 14, 09400 Aranda de Duero, Burgos, España","Fecha":"20-02-2023","Importe":"147.98"})

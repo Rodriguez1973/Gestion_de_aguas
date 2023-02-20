@@ -12,7 +12,7 @@ async function solicitarRegistro(datosRequeridos) {
 
   ajaxrequest.open(
     'POST',
-    'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_Aguas/php/consultarDispositivos.php',
+    'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_de_aguas/php/consultarDispositivos.php',
     true,
   )
   ajaxrequest.setRequestHeader(
@@ -90,7 +90,7 @@ function grabarRegistro(nuevoRegistro) {
     //Inicializa una solicitud recién creada o reinicializa una existente.
     ajaxrequest.open(
       'POST',
-      'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_Aguas/php/grabarDispositivos.php',
+      'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_de_aguas/php/grabarDispositivos.php',
       true,
     )
     //Es una modificación.
@@ -103,7 +103,7 @@ function grabarRegistro(nuevoRegistro) {
       //Inicializa una solicitud recién creada o reinicializa una existente.
       ajaxrequest.open(
         'POST',
-        'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_Aguas/php/modificarDispositivos.php',
+        'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_de_aguas/php/modificarDispositivos.php',
         true,
       )
     }
@@ -161,7 +161,7 @@ function borrarRegistro() {
     //Inicializa una solicitud recién creada o reinicializa una existente.
     ajaxrequest.open(
       'POST',
-      'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_Aguas/php/borrarDispositivos.php',
+      'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_de_aguas/php/borrarDispositivos.php',
       true,
     )
     //Cambio de estado a listo,
@@ -205,7 +205,7 @@ async function leerNIFs() {
   //Aquí va la ruta al archivo php que realiza la consulta a la base de datos.
   ajaxrequest.open(
     'POST',
-    'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_Aguas/php/consultarClaves.php',
+    'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_de_aguas/php/consultarClaves.php',
     true,
   )
 

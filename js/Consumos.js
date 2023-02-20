@@ -41,7 +41,7 @@ async function leerDispositivos() {
 
     ajaxrequest.open(
         'POST',
-        'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_Aguas/php/consultarDatosDispositivos.php',
+        'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_de_aguas/php/consultarDatosDispositivos.php',
         true,
     )
     ajaxrequest.setRequestHeader(
@@ -76,7 +76,7 @@ function actualizarConsumo(id, medida) {
     //Inicializa una solicitud recién creada o reinicializa una existente.
     ajaxrequest.open(
         'POST',
-        'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_Aguas/php/actualizaConsumo.php',
+        'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_de_aguas/php/actualizaConsumo.php',
         true,
     )
 

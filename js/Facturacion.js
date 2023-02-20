@@ -27,7 +27,7 @@ async function leerMedidasDispositivos() {
 
     ajaxrequest.open(
         'POST',
-        'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_Aguas/php/consultarDatosDispositivos.php',
+        'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_de_aguas/php/consultarDatosDispositivos.php',
         true,
     )
     ajaxrequest.setRequestHeader(
@@ -103,7 +103,7 @@ function grabarMedidas(IdDispositivo, fecha, medida, precio) {
     //Inicializa una solicitud recién creada o reinicializa una existente.
     ajaxrequest.open(
         'POST',
-        'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_Aguas/php/grabarConsumos.php',
+        'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_de_aguas/php/grabarConsumos.php',
         true,
     )
 
@@ -148,7 +148,7 @@ function enviarCorreoConsumo(IdDispositivo) {
     //Inicializa una solicitud recién creada o reinicializa una existente.
     ajaxrequest.open(
         'POST',
-        'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_Aguas/php/consultarDatosCorreo.php',
+        'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_de_aguas/php/consultarDatosCorreo.php',
         true,
     )
 
@@ -195,43 +195,47 @@ function procesaCorreo(datosLeidos) {
 
     //Datos del correo electrónico.
     let datosCorreo =
-    '{"' +
-    'NIF' +
-    '":' +
-    '"' +
-    datos[0].NIF +
-    '",' +
-    '"' +
-    'Nombre' +
-    '":' +
-    '"' +
-    datos[0].Nombre + " " + datos[0].Apellido1 +" " + datos[0].Apellido2 +
-    '",' +
-    '"' +
-    'Email' +
-    '":' +
-    '"' +
-    datos[0].Email+
-    '",' +
-    '"' +
-    'Direccion' +
-    '":' +
-    '"' +
-    datos[0].Direccion +
-    '",' +
-    '"' +
-    'Fecha' +
-    '":' +
-    '"' +
-    datos[0].Fecha_medida +
-    '",' +
-    '"' +
-    'Importe' +
-    '":' +
-    '"' +
-    Math.round(consumo*datos[0].Precio*100)/100 +
-    '"}'
-    
+        '{"' +
+        'Titulo' +
+        '":' +
+        '"Información del contrato del suministro de aguas",' +
+        '"' +
+        'NIF' +
+        '":' +
+        '"' +
+        datos[0].NIF +
+        '",' +
+        '"' +
+        'Nombre' +
+        '":' +
+        '"' +
+        datos[0].Nombre + " " + datos[0].Apellido1 + " " + datos[0].Apellido2 +
+        '",' +
+        '"' +
+        'Email' +
+        '":' +
+        '"' +
+        datos[0].Email +
+        '",' +
+        '"' +
+        'Direccion' +
+        '":' +
+        '"' +
+        datos[0].Direccion +
+        '",' +
+        '"' +
+        'Fecha' +
+        '":' +
+        '"' +
+        cambiarFormatoFecha(datos[0].Fecha_medida) +
+        '",' +
+        '"' +
+        'Importe' +
+        '":' +
+        '"' +
+        Math.round(consumo * datos[0].Precio * 100) / 100 +
+        '"}'
+
     console.log(datosCorreo)
 
     enviarEmail(datosCorreo)

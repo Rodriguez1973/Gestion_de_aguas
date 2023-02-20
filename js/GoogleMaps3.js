@@ -106,7 +106,7 @@ async function leerDispositivosMapa() {
 
   ajaxrequest.open(
     'POST',
-    'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_Aguas/php/consultarDatosDispositivos.php',
+    'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_de_aguas/php/consultarDatosDispositivos.php',
     true,
   )
   ajaxrequest.setRequestHeader(
