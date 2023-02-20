@@ -226,16 +226,10 @@ function procesaCorreo(datosLeidos) {
     datos[0].Fecha_medida +
     '",' +
     '"' +
-    'Consumo' +
+    'Importe' +
     '":' +
     '"' +
-    consumo +
-    '",' +
-    '"' +
-    'Precio' +
-    '":' +
-    '"' +
-    datos[0].Precio +
+    Math.round(consumo*datos[0].Precio*100)/100 +
     '"}'
     
     console.log(datosCorreo)

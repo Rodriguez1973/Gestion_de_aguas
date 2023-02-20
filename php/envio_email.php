@@ -31,8 +31,11 @@ try {
 
     //Contenido
     $mail->isHTML(true);                                 
-    $mail->Subject = 'Información del contrato del suministro de aguas';
-    $mail->Body    = '<p><b>Fecha: </b>'.$tmpArray[4].'</p><p><b>Dirección: </b>'.$tmpArray[3].'</p>';
+    $mail->Subject = "Información del contrato del suministro de aguas";
+    $mail->Body    = "<p><b>Fecha: </b>$tmpArray[4]</p><p><b>Dirección: </b>.$tmpArray[3]</p>".
+    "<p><b>Hola $tmpArray[1]:</p><p>En los próximos días, procederemos a domiciliar el recibo en su cuenta
+    por el servicio prestado, por un importe de $tmpArray[5]€.</p><p>Los servicios municipales de aguas le 
+    saludan atentamente.</p>";
     
     //$mail->AddAttachment("ficheroAEnviar.pdf"); //Opcional
 

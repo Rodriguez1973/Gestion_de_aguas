@@ -13,7 +13,7 @@ create table if not exists abonados(
     Email varchar(255) not null,
     Telefono varchar(9) not null,
     Iban varchar(24) not null
-) engine=innoDB default charset=utf8 collate=utf8_unicode_ci;
+) engine=innoDB default charset=latin1 collate=latin1_spanish_ci;
 
 -- Tabla dispositivos.
 create table if not exists dispositivos(
@@ -26,7 +26,7 @@ create table if not exists dispositivos(
     Medida decimal(10,2) not null,
     primary key (Id),
     constraint fk_nif foreign key (NIF) references abonados(NIF) on delete cascade on update cascade
-) engine=innoDB default charset=utf8 collate=utf8_unicode_ci;
+) engine=innoDB default charset=latin1 collate=latin1_spanish_ci;
 
 -- Tabla consumos.
 create table if not exists consumos(
@@ -36,4 +36,4 @@ create table if not exists consumos(
     Precio decimal(6,2) not null,
     primary key (IdDispositivo, Fecha_Medida),
     constraint fk_id_dispositivo foreign key (IdDispositivo) references dispositivos(Id) on delete cascade on update cascade
-) engine=innoDB default charset=utf8 collate=utf8_unicode_ci;
+) engine=innoDB default charset=latin1 collate=latin1_spanish_ci;
