@@ -43,7 +43,6 @@ try {
     $mail->AddAttachment("ficheroAEnviar.pdf"); //Opcional
 
     $mail->send();
-    echo "El correo con la factura se envio correctamente";
 } catch (Exception $e) {
     echo "Error en el envío. Mailer Error: {$mail->ErrorInfo}";
 }
