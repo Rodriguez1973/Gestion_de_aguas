@@ -197,7 +197,7 @@ function validarAbonado(evt) {
     }
   }
 
-  //Valida la Iban.
+  //Valida el Iban.
   if (
     (evt.target.id === 'iIban' ||
       evt.target.id === 'bGrabar' ||
