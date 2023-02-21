@@ -3,11 +3,11 @@ Proyecto realizado por: José A. Rodríguez López
 Fecha: 18/02/2023
 */
 
-let intervaloTiempo = 10000 //Tiempo en milisegundos de la tarea programada. 5minuto.
+let intervaloTiempo = 10000 //Tiempo en milisegundos de la tarea programada.
 let tareaGeneracionConsumo //Tarea temporizada que genera el consumo de los caudalímetros aleatoriamente.
 
 //--------------------------------------------------------------------------------------------------
-//Inicia la tarea periodica que genara los consumos de los dispositivos.
+//Inicia la tarea periodica que genera los consumos de los dispositivos.
 function inicioGeneracionConsumos() {
     //Ejecuta la función repetidamente cada intervalo indicado en milisegundos.
     tareaGeneracionConsumo = setInterval(() => {

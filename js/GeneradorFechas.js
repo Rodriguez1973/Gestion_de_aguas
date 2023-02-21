@@ -92,7 +92,7 @@ function actualizarFecha() {
 }
 
 //--------------------------------------------------------------------------------------------------
-//Inicia la tarea temporizadas.
+//Inicia la fecha a mostrar en la interfaz.
 if (!window.sessionStorage.getItem("fechaIniciada")) {
     buscarFechaMasAlta()
     actualizarFecha()
