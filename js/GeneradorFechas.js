@@ -3,7 +3,7 @@ Proyecto realizado por: José A. Rodríguez López
 Fecha: 20/02/2023
 */
 
-let tiempoGeneradorFechas = 5000 //Tiempo en milisegundos del generador de fechas para el cambio de día.
+let tiempoGeneradorFechas = 2000 //Tiempo en milisegundos del generador de fechas para el cambio de día.
 let tareaGeneradorFechas //Tarea temporizada que genera fechas para la simulación.
 
 //--------------------------------------------------------------------------------------------------

@@ -24,6 +24,7 @@ body {
     margin: 0;
     background-color: #0f9bf6;
     min-height: 780px;
+    min-width: 1480px;
 }
 
 header{

@@ -5,7 +5,7 @@ Fecha: 18/02/2023
 
 const PRECIO_METRO_CUBICO = 3.5 //Constante que define el importe facturado por cada metro cubico de agua.
 let facturado = false //Flag que indica si se ha producido la facturación.
-let tiempoFacturacion = 5000 //Tiempo en milisegundos de la tarea programada facturarConsumo. 20 minutos.
+let tiempoFacturacion = 1000 //Tiempo en milisegundos de la tarea programada facturarConsumo.
 let tareaFacturacion //Tarea temporizada que genera la facturación.
 
 
@@ -56,8 +56,7 @@ async function leerMedidasDispositivos() {
 //Recorre todos los dispositivos tomando sus medidas para guardarlos en la tabla de consumos.
 function facturacion(dispositivos) {
     //Si hay dispositivos y no ha sido ya facturado el consumo.
-    if (dispositivos && !facturado) {
-        arrayIdDispositivos = []
+    if (dispositivos) {
         if ((window.sessionStorage.getItem("dia") == 30 && (window.sessionStorage.getItem("mes") == 3 || window.sessionStorage.getItem("mes")== 6 || 
         window.sessionStorage.getItem("mes") == 9 || window.sessionStorage.getItem("mes")== 12)) && !facturado) {
             for (let i = 0; i < dispositivos.length; i++) {
@@ -170,7 +169,7 @@ function enviarCorreoConsumo(IdDispositivo) {
         if (ajaxrequest.readyState === 4 && ajaxrequest.status === 200) {
             let datosLeidos = ajaxrequest.responseText;
             if (datosLeidos) {
-                procesaCorreo(datosLeidos)
+                setTimeout(() => {procesaCorreo(datosLeidos)}, 5);
             } else {
                 mostrarVentanaEmergente('Error en la lectura de datos para el envio del correo.', 'error')
             }
