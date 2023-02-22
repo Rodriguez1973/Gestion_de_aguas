@@ -3,58 +3,59 @@
     Author     : José A. Rodríguez López
 */
 @font-face {
-    font-family: 'TTNorms-Black';
-    /*Nombre de la fuente. Requerido.*/
-    src: url('../fonts/TTNorms-Black.otf');
-    /*URL donde se encuentra la fuente. Se pueden incluir 
+  font-family: 'TTNorms-Black';
+  /*Nombre de la fuente. Requerido.*/
+  src: url('../fonts/TTNorms-Black.otf');
+  /*URL donde se encuentra la fuente. Se pueden incluir 
                                            varios formatos separados por comas para diferentes 
                                            navegadores (EOT, TTF, OTF, WOFF, WOFF2, SVG). Requerido.*/
-    font-style: normal;
-    /*Estilo de la fuente.*/
-    font-weight: bold;
-    /*Grosor de la fuente.*/
-    font-strech: normal;
+  font-style: normal;
+  /*Estilo de la fuente.*/
+  font-weight: bold;
+  /*Grosor de la fuente.*/
+  font-strech: normal;
 }
 
 body {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    background-color: #0f9bf6;
-    min-height: 875px;
-    min-width: 1320px;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  margin: 0;
+  width: 100%;
+  background-color: #0f9bf6;
+  min-height: 780px;
+  min-width: 1350px;
 }
 
-header{
-    display: flex;
-    justify-content: center;
-    height: 190px;
-    min-width: 1150px;
+header {
+  display: flex;
+  justify-content: space-around;
+  height: 190px;
+  margin: 0;
 }
 
-header p{
+header p {
   margin-right: 15px;
-  text-align: center;
+  text-align: left;
   font-size: 17px;
   color: white;
   font-weight: bold;
-  width:200px;
 }
 
 h1 {
-    font-family: 'TTNorms-Black';
-    font-size: 100px;
-    text-align: center;
-    margin: 20px auto 40px auto;
-    text-shadow: rgb(245, 242, 75) 0 -3px;
+  font-family: "TTNorms-Black";
+  font-size: 100px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  text-shadow: rgb(245, 242, 75) 0 -4px;
+  width: 1100px;
 }
 
-header img{
-    margin: 15px 25px 0 50px;
-    width: 150px;
-    height: 150px;
+header img {
+  margin: 15px 0px 0 0px;
+  width: 150px;
+  height: 150px;
 }
 
 main {
@@ -153,9 +154,9 @@ a {
   text-decoration: none;
 }
 
-#menu input:hover:not([disabled]){
+#menu input:hover:not([disabled]) {
   font-weight: bold;
-  color:white;
+  color: white;
   background-color: rgb(5, 5, 49);
 }
 
