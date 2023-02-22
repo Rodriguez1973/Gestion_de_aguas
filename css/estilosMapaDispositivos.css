@@ -74,6 +74,10 @@ main {
   min-width: 1250px;
 }
 
+menu input{
+  font-weight: bold;
+}
+
 #principal {
   box-sizing: border-box;
   margin-left: 10px;
