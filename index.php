@@ -73,7 +73,7 @@ if (isset($_POST['acceder'])) {
                     method="post">
                     <h2>Identifíquese</h2>
                     <div class="elemento">
-                        <label for="usuario">Nombre:</label>
+                        <label for="usuario">Usuario:</label>
                         <input type="text" name="usuario" id="usuario">
                     </div>
                     <div class="elemento">
