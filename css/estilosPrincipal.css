@@ -1,0 +1,198 @@
+/* 
+    Created on : 12 feb 2023, 9:16:15
+    Author     : José A. Rodríguez López
+*/
+@font-face {
+    font-family: "TTNorms-Black";
+    /*Nombre de la fuente. Requerido.*/
+    src: url("../fonts/TTNorms-Black.otf");
+    /*URL donde se encuentra la fuente. Se pueden incluir 
+                                           varios formatos separados por comas para diferentes 
+                                           navegadores (EOT, TTF, OTF, WOFF, WOFF2, SVG). Requerido.*/
+    font-style: normal;
+    /*Estilo de la fuente.*/
+    font-weight: bold;
+    /*Grosor de la fuente.*/
+    font-strech: normal;
+}
+
+body {
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    margin: 0;
+    width: 100%;
+    background-color: #0f9bf6;
+    min-height: 780px;
+    min-width: 1350px;
+}
+
+header {
+    display: flex;
+    justify-content: space-around;
+    height: 190px;
+    margin: 0;
+}
+
+header p {
+    margin-right: 15px;
+    text-align: left;
+    font-size: 17px;
+    color: white;
+    font-weight: bold;
+}
+
+h1 {
+    font-family: "TTNorms-Black";
+    font-size: 100px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    text-shadow: rgb(223, 19, 241) 0 -4px;
+    width: 1050px;
+}
+
+header img {
+    margin: 15px 0px 0 0px;
+    width: 150px;
+    height: 150px;
+}
+
+#menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0 0 0;
+    width: 100%;
+    min-width: 560px;
+    background-color: transparent;
+}
+
+#menuNavegacion {
+    z-index: 1;
+    list-style: none;
+    text-align: center;
+    padding: 0;
+}
+
+#menu svg {
+    margin: 0 200px 0 200px;
+}
+
+.btn {
+    border: none;
+    width: 500px;
+    font-weight: bold;
+    font-size: 40px;
+    margin: 30px 0 30px 0;
+    transition: all 1s;
+    border-radius: 20px;
+}
+
+.btn:hover {
+    background-color: aquamarine;
+    box-shadow: 0 7px darkblue;
+    top: 2px;
+}
+
+#cont_olas {
+    width: 100%;
+    position: absolute;
+    top: 170px;
+    left: 0;
+    height: 455px;
+}
+
+#icon_gota {
+    text-align: center;
+    z-index: 1;
+}
+
+#contenedor_olas {
+    margin: 0;
+    height: 425px;
+    background: #0f9bf6;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    z-index: 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+#olas {
+    position: absolute;
+    top: 0;
+    height: 500px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.ola {
+    position: absolute;
+    left: -180px;
+    bottom: 0;
+    width: 2402px;
+    height: 427px;
+    background: url(https://static.platzi.com/media/files/waves_c8551f5d-ecf6-4a81-ae1d-f3a0ad55ba10.png) center bottom no-repeat;
+    animation: 5s ola ease-in-out infinite alternate;
+}
+
+.ola.a {
+    background-position: 0 -854px;
+}
+
+.ola.b {
+    background-position: 0 -427px;
+    animation-delay: 0.6s;
+}
+
+.ola.c {
+    background-position: 0 0;
+    animation-delay: 1.2s;
+}
+
+@keyframes ola {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(-80px, 30px);
+    }
+
+    100% {
+        transform: translate(160px, -60px);
+    }
+}
+
+footer {
+    color: white;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    width: 100%;
+    z-index: 1;
+    min-width: 560px;
+}
+
+footer img {
+    width: 75px;
+    height: 75px;
+    margin-right: 30px;
+}
+
+footer p {
+    text-align: center;
+}
+
+footer p:last-child {
+    margin-bottom: 0;
+}
+
+footer>div {
+    display: flex;
+    justify-content: center;
+}

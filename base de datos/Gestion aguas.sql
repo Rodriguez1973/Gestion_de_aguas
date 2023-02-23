@@ -3,6 +3,15 @@ create database if not exists s022045b_Gestion_Aguas;
 
 use s022045b_Gestion_Aguas;
 
+-- Tabla usuarios.
+create table usuarios(
+    usuario varchar(20) primary key,
+    pass varchar(64) not null
+)engine=innoDB default charset=latin1 collate=latin1_spanish_ci;
+
+-- Creación del usuario admin.
+insert into usuarios select 'admin' , sha2('admin',256);
+
 -- Tabla abonados.
 create table if not exists abonados(
     NIF varchar(9) primary key,
