@@ -78,7 +78,7 @@ if (isset($_POST['acceder'])) {
                     </div>
                     <div class="elemento">
                         <label for="password">Contraseña:</label>
-                        <input type="text" name="password" id="password">
+                        <input type="password" name="password" id="password">
                     </div>
                     <div class="elemento">
                         <input type="submit" name="acceder" id="acceder" value="Acceder">
