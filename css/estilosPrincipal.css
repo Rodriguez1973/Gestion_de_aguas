@@ -91,7 +91,7 @@ header img {
 
 .btn:hover {
     background-color: aquamarine;
-    box-shadow: 0 7px darkblue;
+    box-shadow: 0 7px rgb(223, 19, 241);
     top: 2px;
 }
 
@@ -106,6 +106,7 @@ header img {
 #icon_gota {
     text-align: center;
     z-index: 1;
+    margin-bottom: 21px;
 }
 
 #contenedor_olas {

@@ -7,7 +7,7 @@ let borrado = false //Flag que controla si se ha borrado un registro.
 let siguiente = false //Flag que controla si el flujo va al registro siguiente.
 let anterior = false //Flag que controla si el flujo va al registro anterior.
 let hayDatosBD = false //Flag que controla si se han leído datos en una consulta.
-let Id=null //Número de registro.
+let Id = null //Número de registro.
 
 //-------------------------------------------------------------------------------------------------
 //Referencias de los objetos del documento.
@@ -39,13 +39,13 @@ bModificar.addEventListener(
       grabarRegistro(false)
     }
   },
-  false,
+  false
 ) //Evento click sobre el botón Modificar registro.
-bBorrar.addEventListener('click', borrarRegistro, false) //Evento click sobre el botón Borrar registro.
-bPrimero.addEventListener('click', primerRegistro, false) //Evento click sobre el botón Visualizar Primero.
-bUltimo.addEventListener('click', ultimoRegistro, false) //Evento click sobre el botón Visualizar último.
-bSiguiente.addEventListener('click', siguienteRegistro, false) //Evento click sobre el botón Siguiente registro.
-bAnterior.addEventListener('click', anteriorRegistro, false) //Evento click sobre el botón Anterior registro.
+bBorrar.addEventListener('click', borrarRegistro, false) //Evento click sobre el botón Borrar.
+bPrimero.addEventListener('click', primerRegistro, false) //Evento click sobre el botón Primer registro.
+bUltimo.addEventListener('click', ultimoRegistro, false) //Evento click sobre el botón Último registro.
+bSiguiente.addEventListener('click', siguienteRegistro, false) //Evento click sobre el botón Siguiente.
+bAnterior.addEventListener('click', anteriorRegistro, false) //Evento click sobre el botón Anterior.
 iNIF.addEventListener('blur', validarAbonado, false) //Evento blur dobre el input iNIF.
 iNombre.addEventListener('blur', validarAbonado, false) //Evento blur dobre el input iNombre.
 iApellido1.addEventListener('blur', validarAbonado, false) //Evento blur sobre el input iApellido1.
@@ -198,7 +198,7 @@ function limpiarCampos() {
     iTelefono.disabled = true
     iIban.disabled = true
   } else {
-    iNIF.readOnly= false;
+    iNIF.readOnly = false;
     iNIF.disabled = false
     iNombre.disabled = false
     iApellido1.disabled = false
@@ -264,7 +264,7 @@ function mostrarVentanaEmergente(mensaje, icono) {
 //--------------------------------------------------------------------------------------------------
 //Rellena los campos en la interfaz.
 function rellenarCampos(registro) {
-  iNIF.readOnly= true;
+  iNIF.readOnly = true;
   iNIF.value = registro.NIF
   iNombre.value = registro.Nombre
   iApellido1.value = registro.Apellido1

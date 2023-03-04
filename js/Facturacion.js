@@ -125,9 +125,7 @@ function grabarMedidas(IdDispositivo, fecha, medida, precio) {
             let respuesta = ajaxrequest.responseText;
             if (respuesta === "Registro grabado correctamente.") {
                 enviarCorreoConsumo(IdDispositivo)
-            } else {
-                mostrarVentanaEmergente(respuesta, 'error')
-            }
+            } 
         }
     }
 
@@ -240,7 +238,7 @@ function procesaCorreo(datosLeidos) {
         Math.round(consumo * datos[0].Precio * 100) / 100 +
         '"}'
 
-    console.log(datosCorreo)
+    //console.log(datosCorreo)
 
     enviarEmail(datosCorreo)
 }

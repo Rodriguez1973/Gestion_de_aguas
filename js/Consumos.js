@@ -1,114 +1,112 @@
 /*
 Proyecto realizado por: José A. Rodríguez López
-Fecha: 18/02/2023
+Fecha: 04/03/2023
 */
 
-let intervaloTiempo = 10000 //Tiempo en milisegundos de la tarea programada.
-let tareaGeneracionConsumo //Tarea temporizada que genera el consumo de los caudalímetros aleatoriamente.
+//-------------------------------------------------------------------------------------------------
+//Referencias de los objetos del documento.
+const iId = document.getElementById('iId')
+const iNIF = document.getElementById('iNIF')
+const iNombre = document.getElementById('iNombre')
+const iDireccion = document.getElementById('iDireccion')
+const contenedorTabla = document.getElementById('contenedorTabla')
 
-//--------------------------------------------------------------------------------------------------
-//Inicia la tarea periodica que genera los consumos de los dispositivos.
-function inicioGeneracionConsumos() {
-    //Ejecuta la función repetidamente cada intervalo indicado en milisegundos.
-    tareaGeneracionConsumo = setInterval(() => {
-        leerDispositivos(); //Lee el ID de los dispositivos
-    }, intervaloTiempo)
+//-------------------------------------------------------------------------------------------------
+//Leer los datos del dispositivo y los consumos.
+async function leerDatosYConsumosDispositivo() {
+    let formData = new FormData();
+    formData.append('idDispositivo', window.sessionStorage.getItem("idDispositivo"))
+
+    fetch('https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_de_aguas/php/consultarDatosYConsumos.php', {
+        method: 'POST',
+        body: formData,
+    }).then(resp => {
+        return resp.json()
+    }).then(json => {
+        if (json) {
+            procesarDatosDispositivo(json)
+        } else {
+            mostrarVentanaEmergente('No existen consumos registrados para este dispositivo.', 'info')
+        }
+    }).catch(err => {
+        console.log("ERROR :" + err);
+    });
 }
 
-//--------------------------------------------------------------------------------------------------
-//Función que genera los consumos aleatoriamente y los almacena en la base de datos.
-function generarConsumo(dispositivos) {
-    if (dispositivos) {
-        for (let i = 0; i < dispositivos.length; i++) {
-            //console.log(dispositivos[i].Id+"--"+(parseFloat(dispositivos[i].Medida)+Math.random()*10/100))
-            actualizarConsumo(dispositivos[i].Id, (parseFloat(dispositivos[i].Medida) + Math.random() * 10 / 100))
-        }
+//-------------------------------------------------------------------------------------------------
+//Procesa los datos del dispositivo.
+function procesarDatosDispositivo(datos) {
+    if (datos.length > 0) {
+        iId.value = datos[0]['idDispositivo'];
+        iNIF.value = datos[0]['nif'];
+        iNombre.value = datos[0]['nombre'] + " " + datos[0]['apellido1'] + " " + datos[0]['apellido2']
+        iDireccion.value = datos[0]['direccion']
+        mostrarTablaConsumos(datos)
     }
 }
 
-//--------------------------------------------------------------------------------------------------
-//Finalizar tarea periódica.
-function finalizarTareaPeriodica(tarea) {
-    clearInterval(tarea)
-    iniciadoGeneradorFechas=false;
-}
+//-------------------------------------------------------------------------------------------------
+//Función que muestra la tabla con os consumos del dispositivo.
+function mostrarTablaConsumos(datos) {
+    contenedorTabla.innerHTML = '' //Borra la tabla.
+    let tabla = document.createElement('table') //Crea la tabla.
+    contenedorTabla.append(tabla) //Se añade al contenedor de la tabla.
+    let thead = document.createElement('thead') //Se crea encabezado
+    tabla.appendChild(thead) //Se añade al cuerpo de la tabla.
+    let trEncabezado = document.createElement('tr') //Se crea una fila.
+    thead.appendChild(trEncabezado) //Se añade la fila al thead.
+    //Se crean los los th.
+    th = document.createElement('th')
+    th.innerText = 'Fecha'
+    trEncabezado.appendChild(th)
+    th = document.createElement('th')
+    th.innerText = 'Lectura'
+    trEncabezado.appendChild(th)
+    th = document.createElement('th')
+    th.innerText = 'Consumo'
+    trEncabezado.appendChild(th)
+    th = document.createElement('th')
+    th.innerText = 'Precio'
+    trEncabezado.appendChild(th)
+    th = document.createElement('th')
+    th.innerText = 'Importe'
+    trEncabezado.appendChild(th)
 
-//--------------------------------------------------------------------------------------------------
-//Leer los registros de los dispositivos de la base de datos.
-async function leerDispositivos() {
-    //Proporciona una forma fácil de obtener información de una URL sin tener que recargar la página completa. XMLHttpRequest es ampliamente usado en la programación AJAX.
-    //A pesar de su nombre, XMLHttpRequest puede ser usado para recibir cualquier tipo de dato, no solo XML, y admite otros formatos además de HTTP (incluyendo file y ftp).
-    var ajaxrequest = new XMLHttpRequest()
-
-    ajaxrequest.open(
-        'POST',
-        'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_de_aguas/php/consultarDatosDispositivos.php',
-        true,
-    )
-    ajaxrequest.setRequestHeader(
-        'Content-type',
-        'application/x-www-form-urlencoded',
-    )
-    ajaxrequest.onreadystatechange = async function () {
-        //alert(ajaxrequest.readyState + "--" + ajaxrequest.status);
-        if (ajaxrequest.readyState === 4 && ajaxrequest.status === 200) {
-            let datosLeidos = ajaxrequest.responseText
-            if (datosLeidos) {
-                generarConsumo(JSON.parse(datosLeidos))
-            }
+    //Crea el tbody y lo añade a la tabla.
+    let tbody = document.createElement('tbody')
+    tabla.appendChild(tbody)
+    //Bucle que genera las filas del cuerpo de la tabla.
+    for (let i = 0; i < datos.length; i++) {
+        let tr = document.createElement('tr')
+        tbody.appendChild(tr)
+        //Fecha.
+        let celda = document.createElement('td') //Crea la celda
+        tr.appendChild(celda) //Añade la celda a la fila.
+        celda.innerText = cambiarFormatoFecha(datos[i]['fecha'])
+        //Medida.
+        celda = document.createElement('td') //Crea la celda
+        tr.appendChild(celda) //Añade la celda a la fila.
+        celda.innerText = datos[i]['medida']+"m³"
+        //Consumo.
+        celda = document.createElement('td') //Crea la celda
+        tr.appendChild(celda) //Añade la celda a la fila.
+        if (i < datos.length - 1) {
+            $consumo = Math.round((parseFloat(datos[i]['medida']) - parseFloat(datos[i + 1]['medida'])) * 100) / 100
+        } else {
+            $consumo = Math.round(parseFloat(datos[i]['medida']) * 100) / 100
         }
+        celda.innerText = $consumo + "m³"
+        //Precio.
+        celda = document.createElement('td') //Crea la celda
+        tr.appendChild(celda) //Añade la celda a la fila.
+        celda.innerText = datos[i]['precio'] + "€";
+        //Importe.
+        celda = document.createElement('td') //Crea la celda
+        tr.appendChild(celda) //Añade la celda a la fila.
+        celda.innerText = Math.round($consumo * parseFloat(datos[i]['precio']) * 100) / 100 + "€";
     }
-    let envio = 'Envio'
-
-    ajaxrequest.setRequestHeader(
-        'Content-type',
-        'application/x-www-form-urlencoded',
-    )
-    ajaxrequest.send(envio)
 }
 
-//--------------------------------------------------------------------------------------------------
-//Función que actualiza la medida de un dispositivo.
-function actualizarConsumo(id, medida) {
-    //Proporciona una forma fácil de obtener información de una URL sin tener que recargar la página completa. XMLHttpRequest es ampliamente usado en la programación AJAX.
-    //A pesar de su nombre, XMLHttpRequest puede ser usado para recibir cualquier tipo de dato, no solo XML, y admite otros formatos además de HTTP (incluyendo file y ftp).
-    let ajaxrequest = new XMLHttpRequest()
-
-    //Inicializa una solicitud recién creada o reinicializa una existente.
-    ajaxrequest.open(
-        'POST',
-        'https://www.informaticasc.com/curso22_23/Rodriguez/Gestion_de_aguas/php/actualizaConsumo.php',
-        true,
-    )
-
-    //Establece el valor encabezado de una solicitud HTTP. Al usarse, debe llamarse después de llamar a open(), pero antes de llamar a send().
-    //Si se llama a este método varias veces con el mismo encabezado, los valores se combinan en un único encabezado de solicitud.setRequestHeader()
-    ajaxrequest.setRequestHeader(
-        'Content-type',
-        'application/x-www-form-urlencoded',
-    )
-
-    //Cambio de estado a listo,
-    ajaxrequest.onreadystatechange = function () {
-        //alert(ajaxrequest.readyState + '--' + ajaxrequest.status)
-        if (ajaxrequest.readyState === 4 && ajaxrequest.status === 200) {
-            let respuesta = ajaxrequest.responseText
-            if (respuesta === "Error al actualizar el consumo.") {
-                mostrarVentanaEmergente(respuesta, 'error')
-            }
-        }
-    }
-
-    ajaxrequest.setRequestHeader(
-        'Content-type',
-        'application/x-www-form-urlencoded',
-    )
-
-    //Envía la solicitud al servidor.
-    let envio = "Envio=" + id + "*%*" + medida
-    ajaxrequest.send(envio)
-}
-
-//--------------------------------------------------------------------------------------------------
-//Inicia la tarea temporizada de generar caudales.
-inicioGeneracionConsumos();
+//-------------------------------------------------------------------------------------------------
+//Ejecución.
+leerDatosYConsumosDispositivo()

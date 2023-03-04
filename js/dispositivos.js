@@ -20,6 +20,7 @@ const bUltimo = document.getElementById('bUltimo')
 const bSiguiente = document.getElementById('bSiguiente')
 const bAnterior = document.getElementById('bAnterior')
 const bListado = document.getElementById('bListado')
+const bConsumos = document.getElementById('bConsumos');
 const iId = document.getElementById('iId')
 const sNIF = document.getElementById('sNIF')
 const iPuestaServicio = document.getElementById('iPuestaServicio')
@@ -38,8 +39,15 @@ bModificar.addEventListener(
       grabarRegistro(false)
     }
   },
-  false,
+  false
 ) //Evento click sobre el botón Modificar registro.
+bConsumos.addEventListener(
+  'click', 
+  function () {
+    window.sessionStorage.setItem("idDispositivo", iId.value) //Guarda el idDispositivo en el Session Storage.
+    window.location.href="consumos.html" //Cambia a la página "consumos.html".
+  },
+  false) //Evento click sobre el botón Consumos.
 bBorrar.addEventListener('click', borrarRegistro, false) //Evento click sobre el botón Borrar registro.
 bPrimero.addEventListener('click', primerRegistro, false) //Evento click sobre el botón Visualizar Primero.
 bUltimo.addEventListener('click', ultimoRegistro, false) //Evento click sobre el botón Visualizar último.
@@ -174,6 +182,11 @@ function habilitarBotones() {
     bListado.disabled = false
   } else {
     bListado.disabled = true
+  }
+  if (hayDatosBD && !grabar) {
+    bConsumos.disabled = false
+  } else {
+    bConsumos.disabled = true
   }
 }
 

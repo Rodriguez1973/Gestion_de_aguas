@@ -1,5 +1,5 @@
 /* 
-    Created on : 27 ene 2023, 9:16:15
+    Created on : 04 mar 2023, 9:16:15
     Author     : José A. Rodríguez López
 */
 @font-face {
@@ -48,7 +48,7 @@ h1 {
   text-align: center;
   margin-top: 20px;
   margin-bottom: 40px;
-  text-shadow: red 0 -4px;
+  text-shadow: rgb(255, 174, 0) 0 -4px;
   width: 1050px;
 }
 
@@ -95,23 +95,16 @@ main {
   margin-left: 100px;
 }
 
-#datosAbonado {
+#datosDispositivo {
   box-sizing: border-box;
   float: left;
   margin-right: 10px;
   height: 445px;
-  width: 60%;
+  width: 100%;
 }
 
-#datosAbonado>h1 {
+#datosDispositivo>h1 {
   width: 60%;
-}
-
-#cajamapa {
-  display: inline;
-  box-sizing: border-box;
-  width: 39%;
-  float: right;
 }
 
 .pie {
@@ -133,6 +126,7 @@ fieldset {
   box-sizing: border-box;
   background-color: rgb(237, 240, 243);
   margin: 0;
+  padding: 0;
   height: 365px;
 }
 
@@ -143,14 +137,6 @@ fieldset {
   margin-left: 2%;
   vertical-align: bottom;
   font-size: 64px;
-}
-
-/* clase que se aplica al div que contiene el mapa de Google Maps*/
-#map_canvas {
-  height: 365px;
-  margin: 0px;
-  padding: 0px;
-  border: 1px solid black;
 }
 
 nav ul li a {
@@ -168,32 +154,8 @@ li {
 }
 
 li:has(input:hover:not([disabled])) {
-  border-bottom: 7px solid red;
+  border-bottom: 7px solid rgb(255, 174, 0);
   padding-bottom: 3px;
-}
-
-.col-25 {
-  float: left;
-  width: 23%;
-  margin-top: 10px;
-}
-
-.col-75 {
-  float: left;
-  width: 77%;
-  margin-top: 10px;
-}
-
-#noSeleccionar {
-  color: #999;
-}
-
-input:focus {
-  outline: none;
-}
-
-select:focus {
-  outline: none;
 }
 
 a {
@@ -201,15 +163,8 @@ a {
 }
 
 label {
+  margin-top: 10px;
   font-weight: bold;
-}
-
-.campo {
-  font-size: 16px;
-}
-
-#direccionMapa {
-  text-align: center;
 }
 
 #menu input:hover:not([disabled]) {
@@ -237,7 +192,6 @@ footer img {
 
 footer p {
   text-align: center;
-  ;
 }
 
 footer p:last-child {
@@ -248,3 +202,87 @@ footer>div {
   display: flex;
   justify-content: center;
 }
+
+#contenedorDatos{
+  box-sizing: border-box;
+  width:1000px;
+  padding: 0.35em 0.75em;
+  margin-left: auto;
+  margin-right: auto;
+  height: 150px;
+}
+
+#contenedorTabla{
+  box-sizing: border-box;
+  width:1000px;
+  overflow-y: scroll;
+  margin-top: 10px;
+  height: 180px;
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+}
+
+.col-25 {
+  float: left;
+  width: 23%;
+  margin-top: 10px;
+}
+
+.col-75 {
+  float: left;
+  width: 77%;
+  margin-top: 10px;
+}
+
+.campo {
+  font-size: 16px;
+}
+
+table {
+  margin-top:10px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 16px;
+  font-weight: bold;
+  border-collapse: collapse;
+}
+
+table th {
+  box-sizing: border-box;
+  text-align: center;
+  padding: 5px;
+  background-color: rgb(223, 221, 221);
+  border: 1px solid black;
+}
+
+table td {
+  box-sizing: border-box;
+  padding: 8px;
+  border: 1px solid black;
+  width: 150px;
+  text-align: center;
+}
+
+table tr:nth-child(odd){
+  background-color: white;
+}
+
+table tr:nth-child(even){
+  background-color: #e3ffe1;
+}
+
+table td{
+  text-align: left;
+}
+
+table td:first-child{
+  text-align: center;
+}
+
+table td:last-child{
+  text-align: right;
+}
+
+

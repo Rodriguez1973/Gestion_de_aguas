@@ -74,6 +74,10 @@ main {
   min-width: 1250px;
 }
 
+#menu ul{
+  padding-left: 15px;
+}
+
 #menu input {
   font-weight: bold;
 }
@@ -82,7 +86,7 @@ main {
   box-sizing: border-box;
   margin-left: 10px;
   margin-right: 10px;
-  height: 525px;
+  height: 462px;
   min-width: 1130px;
 }
 
@@ -91,18 +95,11 @@ main {
   margin-left: 100px;
 }
 
-.menu li {
-  display: inline-block;
-  list-style: none;
-  top: 50%;
-  font: bold 14px sans-serif;
-}
-
 #datosDispositivo {
   box-sizing: border-box;
   float: left;
   margin-right: 10px;
-  height: 525px;
+  height: 445px;
   width: 60%;
 }
 
@@ -133,9 +130,10 @@ h3 {
 }
 
 fieldset {
+  box-sizing: border-box;
   background-color: rgb(237, 240, 243);
   margin: 0;
-  height: 400px;
+  height: 365px;
 }
 
 #titulo {
@@ -149,10 +147,10 @@ fieldset {
 
 /* Clase que se aplica al div que contiene el mapa de Google Maps*/
 #map_canvas {
-  height: 420px;
+  box-sizing: border-box;
+  height: 365px;
   margin: 0px;
   padding: 0px;
-  border: 1px solid black;
 }
 
 nav ul li a {
@@ -170,7 +168,7 @@ li {
 }
 
 li:has(input:hover:not([disabled])) {
-  border-bottom: 7px solid darkslategray;
+  border-bottom: 7px solid rgb(14, 250, 26);
   padding-bottom: 3px;
 }
 
@@ -184,12 +182,6 @@ li:has(input:hover:not([disabled])) {
   float: left;
   width: 77%;
   margin-top: 10px;
-}
-
-.row:after {
-  content: '';
-  display: table;
-  clear: both;
 }
 
 #noSeleccionar {

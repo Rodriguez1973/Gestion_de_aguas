@@ -16,7 +16,7 @@
     <!--Script funciones-->
     <script src="./js/Funciones.js" defer></script>
     <!--Script operaciones de generación consumos-->
-    <script src="./js/Consumos.js" defer></script>
+    <script src="./js/GeneradorConsumos.js" defer></script>
     <!--Script operaciones de facturación-->
     <script src="./js/Facturacion.js" defer></script>
     <!--Script operaciones Google Maps-->
@@ -70,6 +70,9 @@
                         href="./mapaDispositivos.html">
                         <input type="button" id="bMapa" value="Mapa Dispositivos">
                     </a>
+                </li>
+                <li>
+                    <input type="button" id="bConsumos" value="Consumos">
                 </li>
                 <li>
                     <a href="./principal.html">
@@ -137,7 +140,7 @@
                                 </div>
                                 <div class="col-75">
                                     <input type="text" class="campo" id="iDireccion" name="iDireccion"
-                                        style="width:600px" placeholder="Dirección." value="" readonly>
+                                        style="width:500px" placeholder="Dirección." value="" readonly>
                                 </div>
                             </div>
                             <div class="row">
@@ -146,7 +149,7 @@
                                 </div>
                                 <div class="col-75">
                                     <input type="number" class="campo" id="iMedida" name="iMedida" style="width:150px"
-                                        placeholder="Medición." value="" step="0.01">
+                                        placeholder="Medición." value="" step="0.01" readonly>
                                 </div>
                             </div>
                         </form>

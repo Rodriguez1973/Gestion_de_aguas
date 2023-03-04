@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Gestión Dispositivos</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/estilosConsumos.css">
+    <link rel="icon" href="data:,"> <!--Elimina error favicon.ico-->
+    <!-- SweetAlert -->
+    <!--Plugin con el cual podremos dar un aspecto profesional a los mensajes que lancemos a los usuarios acorde a las tendencias actuales -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9" defer></script>
+    <!--Script funciones-->
+    <script src="./js/Funciones.js" defer></script>
+    <!--Script operaciones de generación consumos-->
+    <script src="./js/GeneradorConsumos.js" defer></script>
+    <!--Script operaciones de facturación-->
+    <script src="./js/Facturacion.js" defer></script>
+    <!--Script operaciones de generación fechas-->
+    <script src="./js/GeneradorFechas.js" defer></script>
+    <script src="./js/Consumos.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <img src="./images/AquaGest.jpg" alt="Logo AquaGest">
+        <h1>Consumo Dispositivo</h1>
+        <p id="fecha"></p>
+    </header>
+
+    <main>
+        <div id="menu">
+            <ul>
+                <li>
+                    <a href="./dispositivos.html">
+                        <input type="button" class="btn" id="volver" value="Volver">
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="principal">
+            <div id="datosDispositivo">
+                <h3>Datos dispositivo</h3>
+                <fieldset>
+                    <div id="contenedorDatos">
+                        <div class="col-25">
+                            <label for="iId">Id Dispositivo</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" class="campo" id="iId" name="iId" style="width:95px" value="" readonly>
+                        </div>
+                        <br>
+                        <div class="col-25">
+                            <label for="iNIF">NIF Abonado</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" class="campo" id="iNIF" name="iNIF" style="width:95px" value="" readonly>
+                        </div>
+                        <br>
+                        <div class="col-25">
+                            <label for="iNombre">Nombre Abonado</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" class="campo" id="iNombre" name="iNombre" style="width:600px" value="" readonly>
+                        </div>
+                        <br>
+                        <div class="col-25">
+                            <label for="iDireccion">Dirección</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" class="campo" id="iDireccion" name="iDireccion" style="width:600px"
+                                value="" readonly>
+                        </div>
+                    </div>
+                    <div id="contenedorTabla">
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </main>
+
+    <!--Pie de página-->
+    <footer id="pie">
+        <div>
+            <img src="./images/JARL_Logo.jpg" alt="JARL_Logo">
+            <div>
+                <p>Desarrollo de aplicaciones Web(DAW) &copy; CIFP Santa Catalina</p>
+                <p>Realizado por: José A. Rodríguez López.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
