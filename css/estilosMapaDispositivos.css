@@ -148,7 +148,6 @@ li {
 
 li:has(input:hover:not([disabled])) {
   border-bottom: 3px solid  rgb(245, 242, 75);
-  padding-bottom: 3px;
 }
 
 a {
